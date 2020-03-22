@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Barber Finance</string>
+    <string name="sales">Vendas</string>
+    <string name="result">Resultados</string>
+</resources>

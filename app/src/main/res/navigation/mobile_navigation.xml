@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_sales"
+    android:label="@string/sales"
+    app:startDestination="@id/navigation_sales">
+
+    <fragment
+        android:id="@+id/navigation_sales"
+        android:name="br.com.anderson.chagas.barberfinance.SaleFragment"
+        android:label="@string/sales" />
+</navigation>
