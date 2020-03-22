@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/navigation_sales"
+        android:iconTint="@color/colorPrimary"
         android:icon="@drawable/ic_sales"
         android:title="@string/sales"/>
 
     <item
         android:id="@+id/navigation_result"
+        android:iconTint="@color/colorPrimary"
+        android:iconTintMode="src_over"
         android:icon="@drawable/ic_result"
         android:title="@string/result"/>
 

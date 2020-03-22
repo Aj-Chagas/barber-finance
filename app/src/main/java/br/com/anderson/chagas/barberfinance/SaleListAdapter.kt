@@ -29,7 +29,7 @@ class SaleListAdapter(private val sales: List<Sale>,
         fun bindView(sale: Sale) {
             itemView.item_sale_name.text = sale.barberName
             itemView.item_sale_creation_time.text = sale.creationTime
-            itemView.item_sale_price.text = sale.salePrice.toString()
+            itemView.item_sale_price.text = sale.salePrice.formatsCurrencyForBrazilian()
             itemView.item_sale_payment_method.text = sale.paymentMethod
         }
     }

@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
     /**
-    * Suporte for API below 23, already API above 23 use in style <item name="android:windowLightStatusBar">true</item>
+    * Support for API below 23, already API above 23 use in style <item name="android:windowLightStatusBar">true</item>
     * */
     private fun statusBarWhiteWithBackIcons() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
