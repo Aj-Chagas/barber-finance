@@ -1,10 +1,11 @@
-package br.com.anderson.chagas.barberfinance
+package br.com.anderson.chagas.barberfinance.ui.result
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import br.com.anderson.chagas.barberfinance.R
 
 class ResultFragment : Fragment() {
 

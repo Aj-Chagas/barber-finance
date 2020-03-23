@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance
+package br.com.anderson.chagas.barberfinance.extension
 
 import java.math.BigDecimal
 import java.text.DecimalFormat

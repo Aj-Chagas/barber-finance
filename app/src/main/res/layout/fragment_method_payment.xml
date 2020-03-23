@@ -32,7 +32,6 @@
                 android:textSize="@dimen/default_25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toEndOf="@id/icon_method_payment_1"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread" />
@@ -79,7 +78,6 @@
                 android:textSize="@dimen/default_25sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.27"
                 app:layout_constraintStart_toEndOf="@id/icon_method_payment_2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,7 +124,6 @@
                 android:importantForAccessibility="no"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.24"
                 app:layout_constraintStart_toEndOf="@id/icon_method_payment_3"
                 app:layout_constraintTop_toTopOf="parent" />
 

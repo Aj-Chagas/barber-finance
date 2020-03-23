@@ -1,10 +1,11 @@
-package br.com.anderson.chagas.barberfinance
+package br.com.anderson.chagas.barberfinance.ui.sale
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.model.Sale
 import kotlinx.android.synthetic.main.fragment_sale.*
 import java.math.BigDecimal
@@ -22,7 +23,11 @@ class SaleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = recycler_list_sales
-        recyclerView.adapter = SaleListAdapter(sale(), activity)
+        recyclerView.adapter =
+            SaleListAdapter(
+                sale(),
+                activity
+            )
     }
 
     private fun sale(): List<Sale>{

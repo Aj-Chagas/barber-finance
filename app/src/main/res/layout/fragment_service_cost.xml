@@ -70,17 +70,16 @@
         app:layout_constraintStart_toEndOf="@+id/label_sifrao"
         app:layout_constraintTop_toTopOf="@+id/label_sifrao" />
 
-    <Button
-        android:layout_width="@dimen/default_0dp"
-        android:layout_height="48dp"
-        android:text="@string/conclude"
-        android:fontFamily="@font/roboto"
-        android:textColor="@android:color/white"
-        android:layout_margin="@dimen/default_16dp"
-        android:background="@drawable/rounded_red_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        <Button
+            android:layout_width="@dimen/default_0dp"
+            android:layout_height="48dp"
+            android:text="@string/conclude"
+            android:fontFamily="@font/roboto"
+            android:textColor="@android:color/white"
+            android:layout_margin="@dimen/default_16dp"
+            android:background="@drawable/rounded_red_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

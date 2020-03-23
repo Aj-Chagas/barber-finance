@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_sales"
-        android:name="br.com.anderson.chagas.barberfinance.SaleFragment"
+        android:name="br.com.anderson.chagas.barberfinance.ui.sale.SaleFragment"
         android:label="@string/sales" />
 
     <fragment
         android:id="@+id/navigation_result"
-        android:name="br.com.anderson.chagas.barberfinance.ResultFragment"
+        android:name="br.com.anderson.chagas.barberfinance.ui.result.ResultFragment"
         android:label="ResultFragment" />
 
 </navigation>

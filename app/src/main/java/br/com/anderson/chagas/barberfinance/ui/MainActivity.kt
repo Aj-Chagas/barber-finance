@@ -1,13 +1,13 @@
-package br.com.anderson.chagas.barberfinance
+package br.com.anderson.chagas.barberfinance.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import br.com.anderson.chagas.barberfinance.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_container)
 
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_sales, R.id.navigation_result)
+            setOf(
+                R.id.navigation_sales,
+                R.id.navigation_result
+            )
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
