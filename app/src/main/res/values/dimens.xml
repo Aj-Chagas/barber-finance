@@ -7,6 +7,11 @@
     <dimen name="default_4dp">4dp</dimen>
     <dimen name="default_20dp">20dp</dimen>
     <dimen name="default_12dp">12dp</dimen>
-    <dimen name="default_16p">16dp</dimen>
+    <dimen name="default_16dp">16dp</dimen>
     <dimen name="default_0dp">0dp</dimen>
+    <dimen name="default_25sp">25sp</dimen>
+    <dimen name="default_135dp">135dp</dimen>
+    <dimen name="default_54dp">54dp</dimen>
+    <dimen name="default_90dp">90dp</dimen>
+    <dimen name="default_20sp">20sp</dimen>
 </resources>

@@ -37,6 +37,10 @@
     </style>
 
 
+    <style name="Theme.MyApp" parent="Theme.MaterialComponents.Light">
+        <!-- ... -->
+    </style>
+
 
 
 </resources>
