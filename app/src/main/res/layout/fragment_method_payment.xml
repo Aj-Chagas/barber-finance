@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_1"
+        android:id="@+id/cardview_credit_card"
         android:layout_width="@dimen/default_0dp"
         android:layout_height="@dimen/default_135dp"
         android:layout_margin="@dimen/default_16dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/cardView_2"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_money"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,15 +53,15 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_2"
+        android:id="@+id/cardView_money"
         android:layout_width="@dimen/default_0dp"
         android:layout_height="@dimen/default_135dp"
         android:layout_margin="@dimen/default_16dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/cardView_3"
+        app:layout_constraintBottom_toTopOf="@+id/cardView_installment_sale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardview_1"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_credit_card"
         android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -98,7 +98,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_3"
+        android:id="@+id/cardView_installment_sale"
         android:layout_width="@dimen/default_0dp"
         android:layout_height="@dimen/default_135dp"
         android:layout_margin="@dimen/default_16dp"
@@ -106,7 +106,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView_2"
+        app:layout_constraintTop_toBottomOf="@+id/cardView_money"
         android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:text="@string/fiado"
+                android:text="@string/installment_sale"
                 android:textColor="@color/black"
                 android:textSize="@dimen/default_25sp"
                 android:importantForAccessibility="no"

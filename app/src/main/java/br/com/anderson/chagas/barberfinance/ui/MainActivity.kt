@@ -3,14 +3,18 @@ package br.com.anderson.chagas.barberfinance.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.anderson.chagas.barberfinance.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +25,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavigation() {
         val bottomNavView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
-        val navController = findNavController(R.id.nav_host_fragment_container)
+        navController = findNavController(R.id.nav_host_fragment_container)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_sales,
-                R.id.navigation_result
+                R.id.navigation_result,
+                R.id.navigation_method_payment,
+                R.id.navigation_service_cost,
+                R.id.navigation_concluded
             )
         )
 
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        bottomNavView.setupWithNavController(navController)
+        //setupActionBarWithNavController(navController, appBarConfiguration)
+        NavigationUI.setupActionBarWithNavController(this, navController)
+        //bottomNavView.setupWithNavController(navController)
     }
 
 
@@ -41,4 +49,7 @@ class MainActivity : AppCompatActivity() {
     private fun statusBarWhiteWithBackIcons() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
+
+    override fun onSupportNavigateUp() = navController.navigateUp()
+
 }

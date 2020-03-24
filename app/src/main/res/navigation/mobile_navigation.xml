@@ -7,12 +7,51 @@
 
     <fragment
         android:id="@+id/navigation_sales"
-        android:name="br.com.anderson.chagas.barberfinance.ui.sale.SaleFragment"
-        android:label="@string/sales" />
+        android:name="br.com.anderson.chagas.barberfinance.ui.sale.listsales.SaleFragment"
+        android:label="@string/sales" >
+        <action
+            android:id="@+id/action_navigation_sales_to_navigation_method_payment"
+            app:destination="@id/navigation_method_payment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_result"
         android:name="br.com.anderson.chagas.barberfinance.ui.result.ResultFragment"
         android:label="ResultFragment" />
+    <fragment
+        android:id="@+id/navigation_method_payment"
+        android:name="br.com.anderson.chagas.barberfinance.ui.sale.MethodPayment"
+        android:label="@string/method_payment" >
+        <action
+            android:id="@+id/action_navigation_method_payment_to_serviceCost"
+            app:destination="@id/navigation_service_cost"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_service_cost"
+        android:name="br.com.anderson.chagas.barberfinance.ui.ServiceCost"
+        android:label="@string/service_cost" >
+        <action
+            android:id="@+id/action_navigation_service_cost_to_concludedFragment"
+            app:destination="@id/navigation_concluded"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_concluded"
+        android:name="br.com.anderson.chagas.barberfinance.ui.ConcludedFragment" >
+        <action
+            android:id="@+id/action_navigation_concluded_to_navigation_sales"
+            app:destination="@id/navigation_sales" />
+    </fragment>
 
 </navigation>

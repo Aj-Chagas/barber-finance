@@ -14,33 +14,45 @@
         android:fontFamily="@font/roboto_bold"
         android:text="@string/barber"
         android:textColor="@color/black"
+        android:textSize="@dimen/default_20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_fernando"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/group_chip"
+        style="@style/buttonChip"
+        android:layout_marginTop="@dimen/default_10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/fernando"
-        android:textSize="@dimen/default_20sp"
-        app:layout_constraintEnd_toStartOf="@id/chip_junior"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/label_barber"
-        app:layout_constraintTop_toBottomOf="@+id/label_barber" />
+        app:layout_constraintTop_toBottomOf="@+id/label_barber">
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_junior"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/junior"
-        android:textSize="@dimen/default_20sp"
-        android:layout_marginEnd="@dimen/default_16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chip_fernando"
-        app:layout_constraintTop_toTopOf="@+id/chip_fernando" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_fernando"
+            style="@style/buttonChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/fernando"
+            android:textSize="@dimen/default_20sp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_junior"
+            style="@style/buttonChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="@dimen/default_16dp"
+            android:text="@string/junior"
+            android:textSize="@dimen/default_20sp" />
+    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:id="@+id/label_sifrao"
@@ -55,22 +67,24 @@
         app:layout_constraintEnd_toStartOf="@id/value_money"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chip_fernando" />
+        app:layout_constraintTop_toBottomOf="@+id/group_chip" />
 
-    <TextView
+    <EditText
         android:id="@+id/value_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/value_0_00"
         android:textColor="@color/black"
         android:textSize="60sp"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/label_sifrao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/label_sifrao"
-        app:layout_constraintTop_toTopOf="@+id/label_sifrao" />
+        app:layout_constraintTop_toTopOf="@+id/label_sifrao"
+        android:autofillHints="" />
 
         <Button
+            android:id="@+id/button_concludes"
             android:layout_width="@dimen/default_0dp"
             android:layout_height="48dp"
             android:text="@string/conclude"

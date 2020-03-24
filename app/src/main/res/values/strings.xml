@@ -1,14 +1,20 @@
 <resources>
     <string name="app_name">Barber Finance</string>
     <string name="sales">Vendas</string>
+    <string name="method_payment">Método de pagamento</string>
+    <string name="service_cost">Dados do serviço</string>
     <string name="result">Resultados</string>
     <string name="credi_card">Cartão de crédito</string>
     <string name="money">Dinheiro</string>
     <string name="barber">Barbeiro</string>
-    <string name="fiado">Fiado</string>
+    <string name="installment_sale">Fiado</string>
     <string name="fernando">Fernando</string>
     <string name="junior">Junior</string>
     <string name="value_0_00">0,00</string>
     <string name="conclude">Concluir</string>
     <string name="sifrao">R$</string>
+    <string name="method_payment_key">METHOD_PAYMENT</string>
+    <string name="service_cost_key">SERVICE_COST</string>
+    <string name="barber_key" />
+
 </resources>
