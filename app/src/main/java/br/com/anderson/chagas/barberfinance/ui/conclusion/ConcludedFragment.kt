@@ -1,17 +1,12 @@
-package br.com.anderson.chagas.barberfinance.ui
+package br.com.anderson.chagas.barberfinance.ui.conclusion
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import br.com.anderson.chagas.barberfinance.R
-import com.airbnb.lottie.LottieAnimationView
-import kotlinx.android.synthetic.main.fragment_concluded.*
 
 
 class ConcludedFragment : Fragment() {
@@ -27,12 +22,7 @@ class ConcludedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val methodPayment = arguments?.getString(getString(R.string.method_payment_key))
-        val valueMoney = arguments?.getString(getString(R.string.service_cost_key))
-        val barber = arguments?.getString(getString(R.string.barber_key))
-
-        Log.i("teste", barber.toString())
+        wrapperBundle()
 
 
 /*        val animationView = progressBar as LottieAnimationView
@@ -43,6 +33,12 @@ class ConcludedFragment : Fragment() {
             }
         })*/
 
+    }
+
+    private fun wrapperBundle() {
+        val methodPayment = arguments?.getString(getString(R.string.method_payment_key))
+        val valueMoney = arguments?.getString(getString(R.string.service_cost_key))
+        val barber = arguments?.getString(getString(R.string.barber_key))
     }
 
 }

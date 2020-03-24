@@ -33,22 +33,7 @@ class SaleFragment : Fragment() {
 
     private fun setupAdapterRecyclerView() {
         val recyclerView = recycler_list_sales
-        recyclerView.adapter =
-            SaleListAdapter(
-                sale(),
-                activity
-            )
+        recyclerView.adapter = SaleListAdapter(context = activity)
     }
 
-    private fun sale(): List<Sale>{
-        return listOf(
-                Sale("Junior", "8:50 AM", BigDecimal(25.00), "Dinheiro"),
-                Sale("Junior", "9:50 AM", BigDecimal(50.00), "Crédito"),
-                Sale("Fernando", "10:50 AM", BigDecimal(25.00), "Fiado"),
-                Sale("junior", "11:50 AM", BigDecimal(20.00), "Dinheiro"),
-                Sale("Fernando", "14:00 PM", BigDecimal(25.00), "Crédito"),
-                Sale("junior", "15:09 PM", BigDecimal(30.00), "Crédito"),
-                Sale("Fernando", "17:03 PM", BigDecimal(25.00), "Dinheiro")
-            )
-    }
 }

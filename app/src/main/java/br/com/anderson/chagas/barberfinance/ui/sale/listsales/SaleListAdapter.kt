@@ -10,7 +10,7 @@ import br.com.anderson.chagas.barberfinance.extension.formatsCurrencyForBrazilia
 import br.com.anderson.chagas.barberfinance.model.Sale
 import kotlinx.android.synthetic.main.item_sale.view.*
 
-class SaleListAdapter(private val sales: List<Sale>,
+class SaleListAdapter(private val sales: List<Sale> = mutableListOf(),
                       private val context: FragmentActivity?) :
     RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
 

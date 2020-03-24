@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_concluded"
-        android:name="br.com.anderson.chagas.barberfinance.ui.ConcludedFragment" >
+        android:name="br.com.anderson.chagas.barberfinance.ui.conclusion.ConcludedFragment" >
         <action
             android:id="@+id/action_navigation_concluded_to_navigation_sales"
             app:destination="@id/navigation_sales" />
