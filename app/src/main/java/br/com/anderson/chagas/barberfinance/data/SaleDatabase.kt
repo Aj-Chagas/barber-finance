@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import br.com.anderson.chagas.barberfinance.data.converter.ConverterBigDecimal
 import br.com.anderson.chagas.barberfinance.model.Sale
 
-@Database(entities = [Sale::class], version = 1)
+@Database(entities = [Sale::class], version = 2)
 @TypeConverters(ConverterBigDecimal::class)
 abstract class SaleDatabase : RoomDatabase(){
 

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import br.com.anderson.chagas.barberfinance.R
+import br.com.anderson.chagas.barberfinance.extension.formatsDateForBrazilian
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.ui.sale.listsales.SaleListViewModel
 import com.airbnb.lottie.LottieAnimationView
@@ -65,9 +66,12 @@ class ConcludedFragment : Fragment() {
 
         Log.i("teste", valueMoneyTeste + bigDecimal.toString())
 
+        Log.i("teste", rightNow.formatsDateForBrazilian() )
+
         viewModel.addSale(Sale(barberName = barber.toString(),
             salePrice = valueMoneyTeste.toBigDecimal(),
             paymentMethod = methodPayment.toString(),
+            creationDate = rightNow.formatsDateForBrazilian(),
             creationTime = dateFormated
         ))
 

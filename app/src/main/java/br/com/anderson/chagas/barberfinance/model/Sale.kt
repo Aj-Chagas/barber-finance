@@ -10,6 +10,7 @@ class Sale(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     val barberName : String,
     val creationTime : String,
+    val creationDate : String,
     val salePrice : BigDecimal,
     val paymentMethod: String
 ) : Serializable
