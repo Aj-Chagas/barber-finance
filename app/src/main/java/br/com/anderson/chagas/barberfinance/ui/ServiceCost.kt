@@ -2,8 +2,6 @@ package br.com.anderson.chagas.barberfinance.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.extension.MoneyTextWatcher
+import br.com.anderson.chagas.barberfinance.extension.showError
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_service_cost.*
-import java.math.BigDecimal
-import java.text.NumberFormat
 import java.util.*
 
 
 class ServiceCost : Fragment() {
+
+    private lateinit var chipChecked : Chip
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,41 +33,19 @@ class ServiceCost : Fragment() {
         requestFocusInEditTextValueMoney()
         setListenerButtonConcludes(getBundleMethodPayment())
         setupChip()
+        setTextWatchValueMoney()
+    }
 
-        val locale = Locale("pt", "BR")
-        value_money.addTextChangedListener(MoneyTextWatcher(value_money, locale))
+    private fun setTextWatchValueMoney() {
+        value_money.addTextChangedListener(MoneyTextWatcher(value_money, getLocale()))
+    }
 
-//        value_money.addTextChangedListener(object : TextWatcher{
-//            override fun afterTextChanged(s: Editable?) {
-//
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//
-//            }
-//
-//            private var current = ""
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                if (s.toString() != current) {
-//
-//                    value_money.removeTextChangedListener(this);
-//
-//                    val cleanString = s.toString().replace(Regex("""[$,.]"""), "")
-//
-//                    val parsed: BigDecimal = BigDecimal(cleanString).setScale(2, BigDecimal.ROUND_FLOOR).divide(BigDecimal(100), BigDecimal.ROUND_FLOOR)
-//                    val formatted = NumberFormat.getCurrencyInstance().format(parsed)
-//
-//                    current = formatted;
-//                    value_money.setText(formatted);
-//                    value_money.setSelection(formatted.length)
-//
-//                    value_money.addTextChangedListener(this)
-//                }
-//            }
-//        })
+    private fun getLocale(): Locale {
+        return Locale("pt", "BR")
     }
 
     private fun setupChip() {
+
         chip_fernando.setOnClickListener {
             chip_fernando.isCheckable = true
             chip_fernando.isChecked = true
@@ -90,18 +67,38 @@ class ServiceCost : Fragment() {
 
     private fun setListenerButtonConcludes(methodPayment: String?) {
         button_concludes.setOnClickListener {
-            val chipChecked = verifyWhichChipIsChecked()
-            val saleBundle = getBundle(methodPayment, chipChecked)
-            goToConcludedFragment(it, saleBundle)
-            closeKeyboard()
+
+            if(verifyData()){
+                val saleBundle = getBundle(methodPayment, verifyWhichChipIsChecked())
+                goToConcludedFragment(it, saleBundle)
+                closeKeyboard()
+            }
         }
     }
 
+
+    private fun verifyData(): Boolean {
+        if(verifyWhichChipIsChecked() == null){
+            return false
+        } else if(value_money.text.isNullOrEmpty()){
+            showError("Digite o valor da venda.")
+            return false
+        }
+        return true
+    }
+
     private fun verifyWhichChipIsChecked(): Chip? {
-        return if (chip_junior.isChecked) {
-            chip_junior
-        } else {
-            chip_fernando
+        return when {
+            chip_junior.isChecked -> {
+                chip_junior
+            }
+            chip_fernando.isChecked -> {
+                chip_fernando
+            }
+            else -> {
+                showError("Selecione o barbeiro")
+                null
+            }
         }
     }
 

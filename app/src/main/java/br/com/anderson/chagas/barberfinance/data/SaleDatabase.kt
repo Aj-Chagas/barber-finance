@@ -12,7 +12,7 @@ import br.com.anderson.chagas.barberfinance.model.Sale
 @TypeConverters(ConverterBigDecimal::class)
 abstract class SaleDatabase : RoomDatabase(){
 
-    abstract fun SaleDao() : SaleDao
+    abstract fun saleDao() : SaleDao
 
     companion object{
         private val lock = Any()
