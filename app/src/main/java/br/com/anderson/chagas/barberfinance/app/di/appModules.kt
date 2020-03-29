@@ -1,14 +1,12 @@
-package br.com.anderson.chagas.barberfinance.di
+package br.com.anderson.chagas.barberfinance.app.di
 
-import android.app.Application
 import androidx.room.Room
-import br.com.anderson.chagas.barberfinance.BarberFinanceApp
-import br.com.anderson.chagas.barberfinance.data.SaleDatabase
-import br.com.anderson.chagas.barberfinance.repository.SaleRepository
-import br.com.anderson.chagas.barberfinance.ui.conclusion.ConclusionViewModel
-import br.com.anderson.chagas.barberfinance.ui.sale.listsales.SaleListViewModel
+import br.com.anderson.chagas.barberfinance.model.data.SaleDatabase
+import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
+import br.com.anderson.chagas.barberfinance.view.conclusion.ConclusionViewModel
+import br.com.anderson.chagas.barberfinance.view.sale.listsales.SaleListViewModel
+import br.com.anderson.chagas.barberfinance.view.servicecost.ServiceCostViewModel
 import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.core.definition.Kind
 import org.koin.dsl.module
 
 
@@ -38,5 +36,9 @@ val appModules = module {
 
     viewModel {
         ConclusionViewModel(get())
+    }
+
+    viewModel {
+        ServiceCostViewModel(get())
     }
 }

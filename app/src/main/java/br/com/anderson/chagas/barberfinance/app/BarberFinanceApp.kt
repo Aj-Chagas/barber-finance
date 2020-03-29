@@ -1,8 +1,7 @@
-package br.com.anderson.chagas.barberfinance
+package br.com.anderson.chagas.barberfinance.app
 
 import android.app.Application
-import br.com.anderson.chagas.barberfinance.di.appModules
-import br.com.anderson.chagas.barberfinance.repository.SaleRepository
+import br.com.anderson.chagas.barberfinance.app.di.appModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

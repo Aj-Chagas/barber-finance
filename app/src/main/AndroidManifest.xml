@@ -8,9 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".BarberFinanceApp"
+        android:name=".app.BarberFinanceApp"
         android:theme="@style/CustomActivityTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,22 +1,17 @@
-package br.com.anderson.chagas.barberfinance.ui
+package br.com.anderson.chagas.barberfinance.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
 import br.com.anderson.chagas.barberfinance.R
-import br.com.anderson.chagas.barberfinance.extension.setActionbarTitle
+import br.com.anderson.chagas.barberfinance.app.extension.setActionbarTitle
 import kotlinx.android.synthetic.main.fragment_method_payment.*
-import kotlin.reflect.KFunction0
 
 
 class MethodPayment : Fragment(){
-
-    var quandoClicado: () -> Unit = {}
 
     override fun onCreateView(
         inflater: LayoutInflater,

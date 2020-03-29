@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.extension;
+package br.com.anderson.chagas.barberfinance.app.extension;
 
 import android.text.Editable;
 import android.text.TextWatcher;

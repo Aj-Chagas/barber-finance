@@ -16,6 +16,6 @@
     <string name="sifrao">R$</string>
     <string name="method_payment_key">METHOD_PAYMENT</string>
     <string name="service_cost_key">SERVICE_COST</string>
-    <string name="barber_key" />
+    <string name="barber_key">BARBER_KEY</string>
 
 </resources>

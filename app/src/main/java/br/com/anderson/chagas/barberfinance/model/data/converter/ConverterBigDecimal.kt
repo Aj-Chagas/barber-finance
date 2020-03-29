@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.data.converter
+package br.com.anderson.chagas.barberfinance.model.data.converter
 
 import androidx.room.TypeConverter
 import java.math.BigDecimal

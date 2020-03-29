@@ -1,13 +1,10 @@
-package br.com.anderson.chagas.barberfinance.ui.sale.listsales
+package br.com.anderson.chagas.barberfinance.view.sale.listsales
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import br.com.anderson.chagas.barberfinance.BarberFinanceApp
 import br.com.anderson.chagas.barberfinance.model.Sale
-import br.com.anderson.chagas.barberfinance.repository.SaleRepository
+import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 
 class SaleListViewModel(private val saleRepository: SaleRepository) : ViewModel(){
 

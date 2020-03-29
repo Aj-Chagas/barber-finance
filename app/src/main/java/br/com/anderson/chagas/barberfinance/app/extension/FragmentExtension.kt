@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.extension
+package br.com.anderson.chagas.barberfinance.app.extension
 
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.extension
+package br.com.anderson.chagas.barberfinance.app.extension
 
 import java.math.BigDecimal
 import java.text.DecimalFormat
@@ -12,5 +12,5 @@ fun BigDecimal.formatsCurrencyForBrazilian() : String{
     return formatBrazilian
         .format(this)
         .replace("R$", "R$ ")
-        .replace("-R$", "R$ -")
+        .replace(".", ",").trim()
 }

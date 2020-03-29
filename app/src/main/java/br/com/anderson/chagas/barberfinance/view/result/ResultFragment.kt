@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.ui.result
+package br.com.anderson.chagas.barberfinance.view.result
 
 import android.os.Bundle
 import android.view.LayoutInflater

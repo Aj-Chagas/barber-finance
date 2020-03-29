@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.data
+package br.com.anderson.chagas.barberfinance.model.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

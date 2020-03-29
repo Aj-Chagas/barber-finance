@@ -1,4 +1,4 @@
-package br.com.anderson.chagas.barberfinance.ui.sale.listsales
+package br.com.anderson.chagas.barberfinance.view.sale.listsales
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import br.com.anderson.chagas.barberfinance.R
-import br.com.anderson.chagas.barberfinance.extension.formatsCurrencyForBrazilian
+import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
 import br.com.anderson.chagas.barberfinance.model.Sale
 import kotlinx.android.synthetic.main.item_sale.view.*
 
