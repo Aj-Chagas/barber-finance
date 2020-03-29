@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.extension.MoneyTextWatcher
+import br.com.anderson.chagas.barberfinance.extension.setActionbarTitle
 import br.com.anderson.chagas.barberfinance.extension.showError
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_service_cost.*
@@ -34,6 +35,11 @@ class ServiceCost : Fragment() {
         setListenerButtonConcludes(getBundleMethodPayment())
         setupChip()
         setTextWatchValueMoney()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setActionbarTitle(R.string.service_cost, true)
     }
 
     private fun setTextWatchValueMoney() {
@@ -96,7 +102,7 @@ class ServiceCost : Fragment() {
                 chip_fernando
             }
             else -> {
-                showError("Selecione o barbeiro")
+                showError("Selecione o barbeiro.")
                 null
             }
         }

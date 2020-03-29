@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.extension.formatsDateForBrazilian
+import br.com.anderson.chagas.barberfinance.extension.setActionbarTitle
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.ui.sale.listsales.SaleListViewModel
 import com.airbnb.lottie.LottieAnimationView
@@ -48,6 +49,11 @@ class ConcludedFragment : Fragment() {
             }
         })
 
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setActionbarTitle(R.string.service_cost, true)
     }
 
     private fun wrapperBundle() {

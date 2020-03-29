@@ -24,7 +24,7 @@
         android:label="ResultFragment" />
     <fragment
         android:id="@+id/navigation_method_payment"
-        android:name="br.com.anderson.chagas.barberfinance.ui.sale.MethodPayment"
+        android:name="br.com.anderson.chagas.barberfinance.ui.MethodPayment"
         android:label="@string/method_payment" >
         <action
             android:id="@+id/action_navigation_method_payment_to_serviceCost"

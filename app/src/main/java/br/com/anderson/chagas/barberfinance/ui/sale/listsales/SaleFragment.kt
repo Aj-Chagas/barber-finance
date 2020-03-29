@@ -6,14 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.get
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.Navigation
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.model.Sale
 import kotlinx.android.synthetic.main.fragment_sale.*
+import kotlinx.coroutines.newFixedThreadPoolContext
 import org.koin.android.ext.android.inject
 
 
@@ -23,8 +26,8 @@ class SaleFragment : Fragment() {
         ViewModelProviders.of(this).get(SaleListViewModel::class.java)
     }*/
 
-    private val recyclerView by lazy {
-        recycler_list_sales
+    private val adapter by lazy {
+        SaleListAdapter(context = activity)
     }
 
     private val viewModel by inject<SaleListViewModel>()
@@ -40,23 +43,17 @@ class SaleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListener()
+        setAdapter()
+
         viewModel.getPeopleList().observe(viewLifecycleOwner, Observer { sales ->
-            sales.let { salesList ->
-                setupAdapterRecyclerView(salesList)
-            }
+            adapter.update(sales)
         })
-
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-//        ViewModelProviders.of(this).get(SaleListViewModel::class.java)
-
-
-
-         //viewModel = ViewModelProviders.of(this, ViewModelProvider.AndroidViewModelFactory(getApplication())).get(SaleListViewModel::class.java)
+    private fun setAdapter() {
+        recycler_list_sales.adapter = adapter
     }
+
 
     private fun setListener() {
         add_sale.setOnClickListener(
@@ -67,8 +64,5 @@ class SaleFragment : Fragment() {
         )
     }
 
-    private fun setupAdapterRecyclerView(salesList: List<Sale>) {
-        recyclerView.adapter = SaleListAdapter(sales = salesList, context = activity)
-    }
 
 }

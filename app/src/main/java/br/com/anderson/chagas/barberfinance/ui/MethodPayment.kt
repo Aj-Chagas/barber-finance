@@ -1,18 +1,22 @@
-package br.com.anderson.chagas.barberfinance.ui.sale
+package br.com.anderson.chagas.barberfinance.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import br.com.anderson.chagas.barberfinance.R
+import br.com.anderson.chagas.barberfinance.extension.setActionbarTitle
 import kotlinx.android.synthetic.main.fragment_method_payment.*
+import kotlin.reflect.KFunction0
 
 
+class MethodPayment : Fragment(){
 
-class MethodPayment : Fragment() {
+    var quandoClicado: () -> Unit = {}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +29,13 @@ class MethodPayment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListeners(view)
+
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setActionbarTitle(R.string.method_payment, true )
+
     }
 
     private fun setListeners(view: View) {
@@ -50,5 +61,7 @@ class MethodPayment : Fragment() {
         view.findNavController()
             .navigate(R.id.action_navigation_method_payment_to_serviceCost, saleBundle)
     }
+
+
 
 }

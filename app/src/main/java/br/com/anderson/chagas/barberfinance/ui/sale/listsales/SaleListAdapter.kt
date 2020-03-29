@@ -10,7 +10,7 @@ import br.com.anderson.chagas.barberfinance.extension.formatsCurrencyForBrazilia
 import br.com.anderson.chagas.barberfinance.model.Sale
 import kotlinx.android.synthetic.main.item_sale.view.*
 
-class SaleListAdapter(private val sales: List<Sale> = mutableListOf(),
+class SaleListAdapter(private val sales: MutableList<Sale> = mutableListOf(),
                       private val context: FragmentActivity?) :
     RecyclerView.Adapter<SaleListAdapter.ViewHolder>() {
 
@@ -26,6 +26,13 @@ class SaleListAdapter(private val sales: List<Sale> = mutableListOf(),
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val sale = sales[position]
         holder.bindView(sale)
+    }
+
+    fun update(sales: List<Sale>) {
+        notifyItemRangeRemoved(0, this.sales.size)
+        this.sales.clear()
+        this.sales.addAll(sales)
+        notifyItemRangeInserted(0, this.sales.size)
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){

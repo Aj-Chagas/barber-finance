@@ -1,13 +1,15 @@
 package br.com.anderson.chagas.barberfinance.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import br.com.anderson.chagas.barberfinance.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,7 +23,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         statusBarWhiteWithBackIcons()
         setupNavigation()
+
     }
+
+
+
+ /*   override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return  when(item.itemId) {
+            android.R.id.home -> findNavController().navigateUp()
+            else -> super.onOptionsItemSelected(item)
+        }
+    }*/
 
     private fun setupNavigation() {
         val bottomNavView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
@@ -50,6 +62,6 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
-    override fun onSupportNavigateUp() = navController.navigateUp()
 
+    override fun onSupportNavigateUp() = navController.navigateUp()
 }
