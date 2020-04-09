@@ -1,17 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_chip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_16dp"
+        android:layout_marginEnd="@dimen/default_16dp"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout_pie_chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/results_group_chip"
+            style="@style/buttonChip"
+            android:layout_marginTop="@dimen/default_10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/label_barber"
+            app:layout_constraintTop_toBottomOf="@+id/label_barber">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_today"
+                style="@style/buttonChip"
+                android:textAppearance="@style/chipTextappearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp"
+                android:text="Hoje"
+                android:textSize="@dimen/default_20sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_last_seven_days"
+                style="@style/buttonChip"
+                android:textAppearance="@style/chipTextappearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="8dp"
+                android:text="Ultimos 7 dias"
+                android:textSize="@dimen/default_20sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_last_thirty_days"
+                style="@style/buttonChip"
+                android:textAppearance="@style/chipTextappearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="@dimen/default_16dp"
+                android:text="Ultimos 30 dias"
+                android:textSize="@dimen/default_20sp" />
+        </com.google.android.material.chip.ChipGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_pie_chart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello world"
+        app:layout_constraintBottom_toTopOf="@id/constraintLayout_subtitles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout_chip">
+
+        <ProgressBar
+            android:id="@+id/background_progressbar_money"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="100"
+            android:progressDrawable="@drawable/status_money"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/background_progressbar_credid_card"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="75"
+            android:progressDrawable="@drawable/status_credid_card"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/background_progressbar_installment"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="25"
+            android:progressDrawable="@drawable/status_installment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_subtitles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout_pie_chart">
+
+        <TextView
+            android:id="@+id/results_textview_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            android:text="Legendas"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/default_20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/results_label_textview_credidCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_16dp"
+            android:text="Cartão de crédito"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/results_label_textview_money"
+            app:layout_constraintTop_toBottomOf="@+id/results_label_textview_money" />
+
+        <TextView
+            android:id="@+id/results_label_textview_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_16dp"
+            android:text="Dinheiro"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/results_textview_subtitle"
+            app:layout_constraintTop_toBottomOf="@+id/results_textview_subtitle" />
+
+        <TextView
+            android:id="@+id/results_label_textview_installment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_16dp"
+            android:text="Fiado"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/results_label_textview_credidCard"
+            app:layout_constraintTop_toBottomOf="@+id/results_label_textview_credidCard" />
+
+
+        <TextView
+            android:id="@+id/results_textview_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/results_label_textview_money"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@+id/results_label_textview_money"
+            tools:text="R$ 130,00" />
+
+        <TextView
+            android:id="@+id/results_textview_credid_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/results_label_textview_credidCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/results_label_textview_credidCard"
+            tools:text="R$ 100,00" />
+
+        <TextView
+            android:id="@+id/results_textview_installment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/results_label_textview_installment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/results_label_textview_installment"
+            tools:text="R$ 0,00" />
+
+        <TextView
+            android:id="@+id/results_label_sales_made_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="@dimen/default_20sp"
+            android:text="Vendas feitas por"
+            app:layout_constraintStart_toStartOf="@+id/results_label_textview_installment"
+            app:layout_constraintTop_toBottomOf="@+id/results_label_textview_installment" />
+
+        <TextView
+            android:id="@+id/results_label_fernando"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fernando"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/default_16dp"
+            app:layout_constraintStart_toStartOf="@+id/results_label_sales_made_by"
+            app:layout_constraintTop_toBottomOf="@+id/results_label_sales_made_by" />
+
+        <TextView
+            android:id="@+id/results_label_junior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Junior"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:layout_marginTop="@dimen/default_16dp"
+            app:layout_constraintStart_toStartOf="@+id/results_label_fernando"
+            app:layout_constraintTop_toBottomOf="@id/results_label_fernando" />
+
+        <TextView
+            android:id="@+id/results_fernando"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/results_label_fernando"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/results_label_fernando"
+            tools:text="R$ 130,00" />
+
+        <TextView
+            android:id="@+id/results_junior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16dp"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/results_label_junior"
+            app:layout_constraintTop_toTopOf="@+id/results_label_junior"
+            tools:text="R$ 130,00" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

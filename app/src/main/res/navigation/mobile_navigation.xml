@@ -23,8 +23,8 @@
     <fragment
         android:id="@+id/navigation_result"
         android:name="br.com.anderson.chagas.barberfinance.view.result.ResultFragment"
-        tools:layout="@layout/fragment_result"
-        android:label="ResultFragment" />
+        android:label="@string/result"
+        tools:layout="@layout/fragment_result" />
     <fragment
         android:id="@+id/navigation_method_payment"
         android:name="br.com.anderson.chagas.barberfinance.view.MethodPayment"

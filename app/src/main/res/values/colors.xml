@@ -7,4 +7,8 @@
     <color name="gray_515C6F">#515C6F</color>
     <color name="blue_2E334C">#2E334C</color>
     <color name="black">#000000</color>
+
+    <color name="status_money">#00999B</color>
+    <color name="status_credid_card">#5C5D5B</color>
+    <color name="status_installment">#F83A00</color>
 </resources>
