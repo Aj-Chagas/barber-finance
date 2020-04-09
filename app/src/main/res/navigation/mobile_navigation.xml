@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_sales"
     android:label="@string/sales"
     app:startDestination="@id/navigation_sales">
@@ -8,6 +9,7 @@
     <fragment
         android:id="@+id/navigation_sales"
         android:name="br.com.anderson.chagas.barberfinance.view.sale.listsales.SaleFragment"
+        tools:layout="@layout/fragment_sale"
         android:label="@string/sales" >
         <action
             android:id="@+id/action_navigation_sales_to_navigation_method_payment"
@@ -21,10 +23,12 @@
     <fragment
         android:id="@+id/navigation_result"
         android:name="br.com.anderson.chagas.barberfinance.view.result.ResultFragment"
+        tools:layout="@layout/fragment_result"
         android:label="ResultFragment" />
     <fragment
         android:id="@+id/navigation_method_payment"
         android:name="br.com.anderson.chagas.barberfinance.view.MethodPayment"
+        tools:layout="@layout/fragment_method_payment"
         android:label="@string/method_payment" >
         <action
             android:id="@+id/action_navigation_method_payment_to_serviceCost"
@@ -37,6 +41,7 @@
     <fragment
         android:id="@+id/navigation_service_cost"
         android:name="br.com.anderson.chagas.barberfinance.view.servicecost.ServiceCost"
+        tools:layout="@layout/fragment_service_cost"
         android:label="@string/service_cost" >
         <action
             android:id="@+id/action_navigation_service_cost_to_concludedFragment"
@@ -48,7 +53,8 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_concluded"
-        android:name="br.com.anderson.chagas.barberfinance.view.conclusion.ConcludedFragment" >
+        android:name="br.com.anderson.chagas.barberfinance.view.conclusion.ConcludedFragment"
+        tools:layout="@layout/fragment_concluded">
         <action
             android:id="@+id/action_navigation_concluded_to_navigation_sales"
             app:destination="@id/navigation_sales" />

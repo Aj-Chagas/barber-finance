@@ -21,6 +21,9 @@ import java.util.*
 class ServiceCost : Fragment() {
 
     private val viewModel by inject<ServiceCostViewModel>()
+    private val paymentMethod by lazy {
+        arguments?.getString(getString(R.string.method_payment_key))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,18 +33,19 @@ class ServiceCost : Fragment() {
         return inflater.inflate(R.layout.fragment_service_cost, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        requestFocusInEditTextValueMoney()
-        setListenerButtonConcludes(getBundleMethodPayment())
-        setupChipListeners()
-        setTextWatchValueMoney()
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setActionbarTitle(R.string.service_cost, true)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requestFocusInEditTextValueMoney()
+        setListenerButtonConcludes()
+        setupChipListeners()
+        setTextWatchValueMoney()
+    }
+
 
     private fun setTextWatchValueMoney() {
         value_money.addTextChangedListener(MoneyTextWatcher(value_money, Locale("pt", "BR")))
@@ -69,24 +73,19 @@ class ServiceCost : Fragment() {
         chipUnselected.isCheckable = false
     }
 
-    private fun getBundleMethodPayment(): String? {
-        return arguments?.getString(getString(R.string.method_payment_key))
-    }
-
-    private fun setListenerButtonConcludes(methodPayment: String?) {
+    private fun setListenerButtonConcludes() {
         button_concludes.setOnClickListener {
-            if(!viewModel.checkChip()){
+            if(!viewModel.checkChipIsSelected()){
                 showError("Selecione o barbeiro")
-            } else if(!viewModel.checkValueMoney(value_money)){
+            } else if(!viewModel.checkValueMoneyIsNotEmpty(value_money.text.toString())){
                 showError("Digite o valor da venda")
             }else {
-                viewModel.saveSale(methodPayment)
+                viewModel.saveSale(paymentMethod)
                 goToConcludedFragment()
                 closeKeyboard()
             }
         }
     }
-
 
     private fun goToConcludedFragment() {
         this.findNavController()

@@ -27,16 +27,21 @@ class ConcludedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAnimation(view)
+    }
 
-
+    private fun setAnimation(view: View) {
         val animationView = progressBar as LottieAnimationView
         animationView.addAnimatorListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
-                view.findNavController().navigate(R.id.action_navigation_concluded_to_navigation_sales)
+                goToNavigationSales(view)
             }
         })
+    }
 
+    private fun goToNavigationSales(view: View) {
+        view.findNavController().navigate(R.id.action_navigation_concluded_to_navigation_sales)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

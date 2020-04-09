@@ -15,7 +15,7 @@ class SaleListViewModel(private val saleRepository: SaleRepository) : ViewModel(
         getAllSale()
     }
 
-    fun getPeopleList(): LiveData<List<Sale>>{
+    fun getSaleList(): LiveData<List<Sale>>{
         return saleList
     }
 

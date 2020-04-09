@@ -37,7 +37,7 @@ class SaleFragment : Fragment() {
         setListener()
         setAdapter()
 
-        viewModel.getPeopleList().observe(viewLifecycleOwner, Observer { sales ->
+        viewModel.getSaleList().observe(viewLifecycleOwner, Observer { sales ->
             adapter.update(sales)
         })
     }

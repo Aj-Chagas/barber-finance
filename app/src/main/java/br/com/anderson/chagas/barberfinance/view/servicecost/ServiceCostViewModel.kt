@@ -1,59 +1,56 @@
 package br.com.anderson.chagas.barberfinance.view.servicecost
 
-import android.widget.EditText
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.anderson.chagas.barberfinance.app.extension.formatHourRightNow
 import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
-import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
+import br.com.anderson.chagas.barberfinance.model.GenerateSale
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 import com.google.android.material.chip.Chip
-import java.math.BigDecimal
-import java.util.*
 
 class ServiceCostViewModel(private val saleRepository: SaleRepository) : ViewModel() {
 
-    var chipChecked: Chip? = null
-    var salePrice : String? = ""
+    var barberName = ""
+    var paymentMethod = ""
+    var salePrice = ""
 
     fun chipSelected(chipSelected : Chip){
-        chipChecked = chipSelected
+        barberName = chipSelected.text.toString()
     }
 
-    fun checkChip(): Boolean {
-        if(chipChecked != null){
+    fun checkChipIsSelected(): Boolean {
+        if(barberName.isNotEmpty()){
             return true
         }
         return false
     }
 
-    fun checkValueMoney(valueMoney : EditText): Boolean {
-        if(valueMoney.text.trim().isNotEmpty()){
-            salePrice = valueMoney.text.toString()
+    fun checkValueMoneyIsNotEmpty(valueMoney: String): Boolean {
+        if(valueMoney.trim().isNotEmpty()){
+            salePrice = valueMoney
             return true
         }
         return false
     }
 
-    fun saveSale(methodPayment: String?) {
-        val rightNow = Date()
-        val creationDate = rightNow.formatsDateForBrazilian()
-        val creationTime = rightNow.formatHourRightNow()
-        val salePrice = salePrice?.formatsCurrencyForBrazilian()
+    fun saveSale(paymentMethod: String?) {
+        this.paymentMethod = paymentMethod ?: ""
+            val generateSale = GenerateSale.generateSale(
+                barberName,
+                this.paymentMethod,
+                salePrice
+            )
+        addSale(generateSale)
+    }
 
-        val sale = Sale(
-            barberName = chipChecked!!.text.toString(),
-            creationTime = creationTime,
-            creationDate = creationDate,
-            paymentMethod = methodPayment!!,
-            salePrice = BigDecimal(salePrice)
-        )
-        addSale(sale)
+
+    fun checkAllFieldsIsNotEmpty() : Boolean{
+        return barberName.isNotEmpty()
+                && paymentMethod.isNotEmpty() && salePrice.isNotEmpty()
     }
 
     private fun addSale(sale:Sale){
-        saleRepository.insertSale(sale)
+        if(checkAllFieldsIsNotEmpty()){
+            saleRepository.insertSale(sale)
+        }
     }
-
 }
