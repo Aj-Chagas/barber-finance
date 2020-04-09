@@ -23,15 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
-
- /*   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return  when(item.itemId) {
-            android.R.id.home -> findNavController().navigateUp()
-            else -> super.onOptionsItemSelected(item)
-        }
-    }*/
-
     private fun setupNavigation() {
         val bottomNavView: BottomNavigationView = findViewById(R.id.bottom_nav_view)
         navController = findNavController(R.id.nav_host_fragment_container)

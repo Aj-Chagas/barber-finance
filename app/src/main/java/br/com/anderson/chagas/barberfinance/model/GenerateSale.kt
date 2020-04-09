@@ -24,7 +24,4 @@ class GenerateSale {
             return sale
         }
     }
-
-
-
 }

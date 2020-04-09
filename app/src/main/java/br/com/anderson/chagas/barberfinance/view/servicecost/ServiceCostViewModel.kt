@@ -1,11 +1,14 @@
 package br.com.anderson.chagas.barberfinance.view.servicecost
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.viewModelScope
 import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
 import br.com.anderson.chagas.barberfinance.model.GenerateSale
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.launch
 
 class ServiceCostViewModel(private val saleRepository: SaleRepository) : ViewModel() {
 
@@ -50,7 +53,9 @@ class ServiceCostViewModel(private val saleRepository: SaleRepository) : ViewMod
 
     private fun addSale(sale:Sale){
         if(checkAllFieldsIsNotEmpty()){
-            saleRepository.insertSale(sale)
+            viewModelScope.launch {
+                saleRepository.insertSale(sale)
+            }
         }
     }
 }

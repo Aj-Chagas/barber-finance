@@ -14,10 +14,6 @@ import org.koin.android.ext.android.inject
 
 class SaleFragment : Fragment() {
 
-/*    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(SaleListViewModel::class.java)
-    }*/
-
     private val adapter by lazy {
         SaleListAdapter(context = activity)
     }
@@ -36,7 +32,10 @@ class SaleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListener()
         setAdapter()
+        getSaleList()
+    }
 
+    private fun getSaleList() {
         viewModel.getSaleList().observe(viewLifecycleOwner, Observer { sales ->
             adapter.update(sales)
         })
@@ -55,6 +54,5 @@ class SaleFragment : Fragment() {
             )
         )
     }
-
 
 }
