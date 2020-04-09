@@ -8,7 +8,7 @@ import java.io.Serializable
 import java.math.BigDecimal
 
 @Entity
-class Sale(
+data class Sale(
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
     val barberName : String,
     val creationTime : String,

@@ -4,6 +4,7 @@ import androidx.room.Room
 import br.com.anderson.chagas.barberfinance.model.data.SaleDatabase
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 import br.com.anderson.chagas.barberfinance.view.conclusion.ConclusionViewModel
+import br.com.anderson.chagas.barberfinance.view.result.ResultViewModel
 import br.com.anderson.chagas.barberfinance.view.sale.listsales.SaleListViewModel
 import br.com.anderson.chagas.barberfinance.view.servicecost.ServiceCostViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -17,7 +18,6 @@ val appModules = module {
 
     single {
         Room.databaseBuilder(get(), SaleDatabase::class.java, DB_NAME)
-            .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -40,5 +40,9 @@ val appModules = module {
 
     viewModel {
         ServiceCostViewModel(get())
+    }
+
+    viewModel{
+        ResultViewModel(get())
     }
 }
