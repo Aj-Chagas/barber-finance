@@ -1,10 +1,8 @@
 package br.com.anderson.chagas.barberfinance.view.servicecost
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewModelScope
-import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
-import br.com.anderson.chagas.barberfinance.model.GenerateSale
+import br.com.anderson.chagas.barberfinance.model.SaleBrain
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 import com.google.android.material.chip.Chip
@@ -37,7 +35,7 @@ class ServiceCostViewModel(private val saleRepository: SaleRepository) : ViewMod
 
     fun saveSale(paymentMethod: String?) {
         this.paymentMethod = paymentMethod ?: ""
-            val generateSale = GenerateSale.generateSale(
+            val generateSale = SaleBrain.generateSale(
                 barberName,
                 this.paymentMethod,
                 salePrice

@@ -15,3 +15,9 @@ fun Date.formatHourRightNow() :String{
     val hourFormat: DateFormat = SimpleDateFormat("hh:mm a")
     return hourFormat.format(this)
 }
+
+fun Date.formatDateddMMMMyyyy() : String {
+    val formatoBrasileiro = "dd MMMM yyyy"
+    val format = SimpleDateFormat(formatoBrasileiro)
+    return format.format(this.time)
+}
