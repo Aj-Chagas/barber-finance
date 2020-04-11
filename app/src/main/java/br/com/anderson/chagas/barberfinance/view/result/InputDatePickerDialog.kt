@@ -1,20 +1,21 @@
 package br.com.anderson.chagas.barberfinance.view.result
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.DatePicker
 import br.com.anderson.chagas.barberfinance.R
+import br.com.anderson.chagas.barberfinance.app.extension.formatDateddMMMMyyyy
+import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
+import kotlinx.android.synthetic.main.input_date_picker_dialog.view.*
 import java.util.*
 
-class InputDatePickerDialog(
-    private val context: Context
-) {
+class InputDatePickerDialog(private val context: Context) {
 
-    val calendar : Calendar = Calendar.getInstance()
+    val c : Calendar = Calendar.getInstance()
+    private lateinit var inflatedView: View
+
 
     fun showInputDialog(
         positiveAction : (inflatedView : View) -> Unit = {},
@@ -23,7 +24,7 @@ class InputDatePickerDialog(
         val builder = AlertDialog.Builder(context)
         val inflater = LayoutInflater.from(context)
 
-        val inflatedView = inflater.inflate(R.layout.input_date_picker_dialog, null)
+        inflatedView = inflater.inflate(R.layout.input_date_picker_dialog, null)
         builder.setView(inflatedView)
             .setPositiveButton("Ok") { _, _ ->
                 positiveAction(inflatedView)
@@ -34,17 +35,23 @@ class InputDatePickerDialog(
         builder
             .create()
             .show()
+        InitializeInputs()
+        configureListener()
     }
 
-    fun showDatePicker(){
+    private fun InitializeInputs() {
+        val formatsDateForBrazilian = c.formatsDateForBrazilian()
+        val formatDateddMMMMyyyy = c.formatDateddMMMMyyyy()
+        inflatedView.dialog_date_edittext_date?.setText(formatsDateForBrazilian)
+        inflatedView.dialog_date_textview_date?.text = formatDateddMMMMyyyy
+    }
 
-        DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-            calendar.set(Calendar.YEAR, year)
-            calendar.set(Calendar.MONTH, month)
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+    private fun configureListener() {
+        inflatedView.dialog_date_edittext_date.setOnClickListener {
+            val datePickerFragment = DatePickerFragment(context, inflatedView)
+            datePickerFragment.showDataPicker().show()
         }
     }
-
 
 }
 

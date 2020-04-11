@@ -1,6 +1,5 @@
 package br.com.anderson.chagas.barberfinance.view.result
 
-import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import br.com.anderson.chagas.barberfinance.R
+import br.com.anderson.chagas.barberfinance.app.extension.formatDateddMMMMyyyy
 import kotlinx.android.synthetic.main.fragment_result.*
 import kotlinx.android.synthetic.main.input_date_picker_dialog.view.*
 import org.koin.android.ext.android.inject
+import java.util.*
 
 @Suppress("DEPRECATION")
 class ResultFragment : Fragment() {
@@ -29,6 +30,9 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val date = Date()
+        viewModel.setCreationDate(date)
 
         initializeTextView()
         chip_today.setOnClickListener {
@@ -76,7 +80,7 @@ class ResultFragment : Fragment() {
     }
 
     private fun inputDatePickerDialogPositiveAction(inflatedView: View) {
-        val text = inflatedView.dialog_date_textinput_date.editText?.text
+        val text = inflatedView.dialog_date_edittext_date.text
         Log.i("teste", text?.toString())
     }
 

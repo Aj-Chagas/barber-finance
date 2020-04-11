@@ -1,8 +1,6 @@
 package br.com.anderson.chagas.barberfinance.view.result
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
 import br.com.anderson.chagas.barberfinance.model.SaleBrain
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
@@ -17,11 +15,11 @@ class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
     private val totalFernando = MediatorLiveData<String>()
     private val totalJunior = MediatorLiveData<String>()
 
-    private val creationDate : String
-        get() {
-            val rightNow = Date()
-            return rightNow.formatsDateForBrazilian()
-        }
+    private val creationDate = MutableLiveData<String>()
+
+    fun setCreationDate(date: Date) {
+        creationDate.value = date.formatsDateForBrazilian()
+    }
 
     fun getTotal() : LiveData<String> {
         total.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
@@ -64,5 +62,7 @@ class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
         }
         return totalJunior
     }
+
+
 
 }
