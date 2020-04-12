@@ -35,7 +35,7 @@ val appModules = module {
     }
 
     viewModel {
-        ConclusionViewModel(get())
+        ConclusionViewModel()
     }
 
     viewModel {

@@ -12,7 +12,6 @@ import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.app.extension.setActionbarTitle
 import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.fragment_concluded.*
-import org.koin.android.ext.android.inject
 
 
 class ConcludedFragment : Fragment() {
@@ -46,7 +45,7 @@ class ConcludedFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setActionbarTitle(R.string.service_cost, true)
+        setActionbarTitle("", false)
     }
 
 

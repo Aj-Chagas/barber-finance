@@ -6,10 +6,6 @@ import br.com.anderson.chagas.barberfinance.model.Sale
 
 class SaleRepository(private val saleDao: SaleDao) {
 
-    fun getAllSale(): LiveData<List<Sale>> {
-        return saleDao.getAll()
-    }
-
     suspend fun insertSale(sale: Sale) {
         saleDao.insert(sale)
     }

@@ -13,8 +13,13 @@ import java.util.*
 
 class InputDatePickerDialog(private val context: Context) {
 
-    val c : Calendar = Calendar.getInstance()
+    private val c : Calendar = Calendar.getInstance()
     private lateinit var inflatedView: View
+
+    companion object {
+        private const val OK = "ok"
+        private const val CANCEL = "cancelar"
+    }
 
 
     fun showInputDialog(
@@ -26,20 +31,20 @@ class InputDatePickerDialog(private val context: Context) {
 
         inflatedView = inflater.inflate(R.layout.input_date_picker_dialog, null)
         builder.setView(inflatedView)
-            .setPositiveButton("Ok") { _, _ ->
+            .setPositiveButton(OK) { _, _ ->
                 positiveAction(inflatedView)
             }
-            .setNegativeButton("cancelar") { dialog, _ ->
+            .setNegativeButton(CANCEL) { dialog, _ ->
                 negativeAction(dialog)
             }
         builder
             .create()
             .show()
-        InitializeInputs()
+        initializeInputs()
         configureListener()
     }
 
-    private fun InitializeInputs() {
+    private fun initializeInputs() {
         val formatsDateForBrazilian = c.formatsDateForBrazilian()
         val formatDateddMMMMyyyy = c.formatDateddMMMMyyyy()
         inflatedView.dialog_date_edittext_date?.setText(formatsDateForBrazilian)

@@ -9,10 +9,11 @@ import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilia
 import kotlinx.android.synthetic.main.input_date_picker_dialog.view.*
 import java.util.*
 
-class DatePickerFragment(val context: Context,
-                         val inflatedView: View?) :  DatePickerDialog.OnDateSetListener {
+class DatePickerFragment(
+    private val context: Context,
+    private val inflatedView: View?) :  DatePickerDialog.OnDateSetListener {
 
-    val c = Calendar.getInstance()
+    private val c: Calendar = Calendar.getInstance()
 
     fun showDataPicker(): DatePickerDialog {
         // Use the current date as the default date in the picker
@@ -30,6 +31,6 @@ class DatePickerFragment(val context: Context,
         val formatsDateForBrazilian = c.formatsDateForBrazilian()
         val formatDateddMMMMyyyy = c.formatDateddMMMMyyyy()
         inflatedView?.dialog_date_edittext_date?.setText(formatsDateForBrazilian)
-        inflatedView?.dialog_date_textview_date?.setText(formatDateddMMMMyyyy)
+        inflatedView?.dialog_date_textview_date?.text = formatDateddMMMMyyyy
     }
 }

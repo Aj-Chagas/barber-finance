@@ -27,7 +27,7 @@ class SaleListViewModel(
         }
     }
 
-    fun setCreationDate(calendar: String) {
+    private fun setCreationDate(calendar: String) {
         creationDate.value = calendar
     }
 

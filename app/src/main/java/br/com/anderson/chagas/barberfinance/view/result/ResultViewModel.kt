@@ -1,11 +1,12 @@
 package br.com.anderson.chagas.barberfinance.view.result
 
 import androidx.lifecycle.*
+import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
 import br.com.anderson.chagas.barberfinance.model.PieChartBrain
 import br.com.anderson.chagas.barberfinance.model.SaleBrain
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
-import kotlinx.android.synthetic.main.fragment_result.*
 import java.math.BigDecimal
+import java.util.*
 
 class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
 
@@ -15,8 +16,11 @@ class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
     private val totalCredidCard = MediatorLiveData<BigDecimal>()
     private val totalFernando = MediatorLiveData<BigDecimal>()
     private val totalJunior = MediatorLiveData<BigDecimal>()
-
     private val creationDate = MutableLiveData<String>()
+
+    init {
+        setCreationDate(Calendar.getInstance().formatsDateForBrazilian())
+    }
 
     fun setCreationDate(calendar: String) {
         creationDate.value = calendar

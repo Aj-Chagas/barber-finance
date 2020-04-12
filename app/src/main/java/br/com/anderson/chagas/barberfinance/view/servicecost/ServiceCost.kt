@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.app.extension.MoneyTextWatcher
 import br.com.anderson.chagas.barberfinance.app.extension.setActionbarTitle
-import br.com.anderson.chagas.barberfinance.app.extension.showError
+import br.com.anderson.chagas.barberfinance.app.extension.showMsg
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_service_cost.*
 import org.koin.android.ext.android.inject
@@ -23,6 +23,11 @@ class ServiceCost : Fragment() {
     private val viewModel by inject<ServiceCostViewModel>()
     private val paymentMethod by lazy {
         arguments?.getString(getString(R.string.method_payment_key))
+    }
+
+    companion object {
+        private const val SELECT_THE_BARBER = "Selecione o barbeiro"
+        private const val ENTER_THE_VALUE_OF_SALE = "Digite o valor da venda"
     }
 
     override fun onCreateView(
@@ -76,9 +81,9 @@ class ServiceCost : Fragment() {
     private fun setListenerButtonConcludes() {
         button_concludes.setOnClickListener {
             if(!viewModel.checkChipIsSelected()){
-                showError("Selecione o barbeiro")
+                showMsg(SELECT_THE_BARBER)
             } else if(!viewModel.checkValueMoneyIsNotEmpty(value_money.text.toString())){
-                showError("Digite o valor da venda")
+                showMsg(ENTER_THE_VALUE_OF_SALE)
             }else {
                 viewModel.saveSale(paymentMethod)
                 goToConcludedFragment()

@@ -13,58 +13,28 @@
         android:layout_marginEnd="@dimen/default_16dp"
         app:layout_constraintBottom_toTopOf="@id/constraintLayout_pie_chart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/results_group_chip"
-            style="@style/buttonChip"
-            android:layout_marginTop="@dimen/default_10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/label_barber"
-            app:layout_constraintTop_toBottomOf="@+id/label_barber">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_today"
-                style="@style/buttonChip"
-                android:textAppearance="@style/chipTextappearance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginEnd="8dp"
-                android:text="Hoje"
-                android:textSize="@dimen/default_20sp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_last_seven_days"
-                style="@style/buttonChip"
-                android:textAppearance="@style/chipTextappearance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginEnd="8dp"
-                android:text="Ultimos 7 dias"
-                android:textSize="@dimen/default_20sp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_last_thirty_days"
-                style="@style/buttonChip"
-                android:textAppearance="@style/chipTextappearance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_marginEnd="@dimen/default_16dp"
-                android:text="Ultimos 30 dias"
-                android:textSize="@dimen/default_20sp" />
-        </com.google.android.material.chip.ChipGroup>
+     <Button
+         android:id="@+id/results_chage_data"
+         android:layout_width="match_parent"
+         android:paddingEnd="80dp"
+         android:paddingStart="80dp"
+         android:gravity="center"
+         android:layout_height="30dp"
+         android:background="@drawable/rounded_red_20dp"
+         tools:text="Hoje - 24/10/2020"
+         android:drawableStart="@drawable/ic_calendar_24dp"
+         android:drawablePadding="@dimen/default_10dp"
+         android:fontFamily="@font/roboto"
+         android:textSize="18sp"
+         android:textColor="@android:color/black"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintTop_toTopOf="parent"
+         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 
@@ -79,13 +49,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraintLayout_chip">
 
-
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/results_textview_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="R$ 20000.00"
+            android:visibility="gone"
             android:textSize="@dimen/default_20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

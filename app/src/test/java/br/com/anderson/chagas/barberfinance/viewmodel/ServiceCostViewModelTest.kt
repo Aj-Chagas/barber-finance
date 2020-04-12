@@ -15,7 +15,7 @@ class ServiceCostViewModelTest  {
     @get:Rule
     var rule = InstantTaskExecutorRule()
 
-    lateinit var viewModel: ServiceCostViewModel
+    private lateinit var viewModel: ServiceCostViewModel
 
     @Mock
     lateinit var repository: SaleRepository
@@ -43,14 +43,14 @@ class ServiceCostViewModelTest  {
 
     @Test
     fun testCheckValueMoneyIsNotEmpty(){
-        var salePrice = "10.00"
+        val salePrice = "10.00"
         val checkValueMoneyIsNotEmpty = viewModel.checkValueMoneyIsNotEmpty(salePrice)
         assertEquals(true, checkValueMoneyIsNotEmpty)
     }
 
     @Test
     fun testCheckValueMoneyIsEmpty(){
-        var salePrice = ""
+        val salePrice = ""
         val checkValueMoneyIsNotEmpty = viewModel.checkValueMoneyIsNotEmpty(salePrice)
         assertEquals(false, checkValueMoneyIsNotEmpty)
     }

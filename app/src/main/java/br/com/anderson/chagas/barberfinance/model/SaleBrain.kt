@@ -9,44 +9,50 @@ import java.util.*
 class SaleBrain {
 
     companion object {
+
+        private const val MONEY = "Dinheiro"
+        private const val INSTALLMENT = "Fiado"
+        private const val CREDIT_CARD = "Cartão de crédito"
+        private const val FERNANDO = "Fernando"
+        private const val JUNIOR = "Junior"
+
         fun generateSale(
             barberName: String,
             paymentMethod: String,
             salePrice: String
         ): Sale {
-
             val rightNow = Date()
-            val creationDate = rightNow.formatsDateForBrazilian()
-            val creationTime = rightNow.formatHourRightNow()
-            val salePrice = salePrice.formatsCurrencyForBrazilian()
-            val sale = Sale(barberName = barberName, creationTime = creationTime, creationDate = creationDate, paymentMethod = paymentMethod, salePrice = BigDecimal(salePrice))
-
-            return sale
+            return Sale(
+                barberName = barberName,
+                creationTime = rightNow.formatHourRightNow(),
+                creationDate = rightNow.formatsDateForBrazilian(),
+                paymentMethod = paymentMethod,
+                salePrice = BigDecimal(salePrice.formatsCurrencyForBrazilian()))
         }
 
         fun getTotal(list : List<Sale>?) : BigDecimal {
             if( list?.size!! > 0){
-                return list?.map { it.salePrice }?.reduce(getTotalize())
+                return list.map { it.salePrice }.reduce(getTotalize())
             }
             return BigDecimal(0.0)
         }
 
-        fun getTotalMoney(sales: List<Sale>?) = getTotalBy(sales, "Dinheiro")
+        fun getTotalMoney(sales: List<Sale>?) = getTotalBy(sales, MONEY)
 
-        fun getTotalInstallment(sales: List<Sale>?) = getTotalBy(sales, "Fiado")
+        fun getTotalInstallment(sales: List<Sale>?) = getTotalBy(sales, INSTALLMENT)
 
-        fun getTotalCredidCard(sales: List<Sale>?) = getTotalBy(sales, "Cartão de crédito")
+        fun getTotalCredidCard(sales: List<Sale>?) = getTotalBy(sales, CREDIT_CARD)
 
-        fun getTotalFernando(sales: List<Sale>?) = getTotalBy(sales, "Fernando")
+        fun getTotalFernando(sales: List<Sale>?) = getTotalBy(sales, FERNANDO)
 
-        fun getTotalJunior(sales: List<Sale>?) = getTotalBy(sales, "Junior")
+        fun getTotalJunior(sales: List<Sale>?) = getTotalBy(sales, JUNIOR)
 
         private fun getTotalize() = { total: BigDecimal, atual: BigDecimal -> total + atual}
 
-        fun getTotalBy(sales: List<Sale>?, s:String) : BigDecimal {
+        private fun getTotalBy(sales: List<Sale>?, s:String) : BigDecimal {
             val filter = sales?.filter { it.barberName == s || it.paymentMethod == s }
             if (filter?.size!! > 0){
-                return filter?.map { it.salePrice }?.reduce(getTotalize())
+                return filter.map { it.salePrice }.reduce(getTotalize())
             }
             return BigDecimal(0.0)
         }

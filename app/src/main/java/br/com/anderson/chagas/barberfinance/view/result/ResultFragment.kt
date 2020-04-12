@@ -1,6 +1,7 @@
 package br.com.anderson.chagas.barberfinance.view.result
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,18 +11,38 @@ import androidx.lifecycle.Observer
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
 import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
+import br.com.anderson.chagas.barberfinance.app.extension.showMsg
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
 import kotlinx.android.synthetic.main.fragment_result.*
 import kotlinx.android.synthetic.main.input_date_picker_dialog.view.*
 import org.koin.android.ext.android.inject
 import java.util.*
+import kotlin.collections.ArrayList
 
-@Suppress("DEPRECATION")
 class ResultFragment : Fragment() {
 
     private val viewModel by inject<ResultViewModel>()
     private val calendar = Calendar.getInstance()
     private var total : Double? = null
 
+    //Color.rgb(246,75,80) vermelho
+    //Color.rgb(97,84,174) roxo
+    //Color.rgb(246,169,94) amarelo
+    //Color.rgb(0,153,155) verde
+
+    private val colorArray: MutableList<Int> = mutableListOf(Color.rgb(97,84,174), Color.rgb(0,153,155), Color.rgb(246,75,80))
+    private var dataVals = ArrayList<PieEntry>(listOf(PieEntry(0f, ""), PieEntry(0f, ""), PieEntry(0f, "")))
+
+    companion object {
+        private const val MONEY = "money"
+        private const val CREDITCARD = "creditCard"
+        private const val INSTALLMENT = "installment"
+        private const val ALERT_MSG = "NÃO HOUVE VENDA NESSE DIA"
+        private const val ZEROED_VALUE = "R$ 0,00"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,35 +54,58 @@ class ResultFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.setCreationDate(calendar.formatsDateForBrazilian())
-
         initializeTextView()
-        chip_today.setOnClickListener {
+        setupListener()
+        setupPieChart()
+    }
+
+    private fun setupListener() {
+        results_chage_data.setOnClickListener {
             showNoticeDialog()
         }
+    }
 
+    private fun setupPieChart() {
+        val pieDataSet = PieDataSet(dataVals, "")
+        pieDataSet.colors = colorArray
+        val pieData = PieData(pieDataSet)
+        pieData.setValueFormatter(PercentFormatter(pieChart))
+        pieData.setValueTextSize(12f)
+        pieData.setValueTextColor(Color.WHITE)
+        pieChart.data = pieData
+        pieChart.centerText = total?.toBigDecimal()?.formatsCurrencyForBrazilian() ?: ZEROED_VALUE
+        pieChart.setCenterTextSize(20f)
+        pieChart.setEntryLabelTextSize(16f)
+        pieChart.setEntryLabelColor(Color.WHITE)
+        pieChart.legend.isEnabled = false
+        pieChart.description.isEnabled = false
+        pieChart.setUsePercentValues(true)
+        pieChart.invalidate()
     }
 
     private fun initializeTextView() {
         viewModel.getTotal().observe(viewLifecycleOwner, Observer { total ->
+            if(total.toDouble() == 0.0){
+                showMsg(ALERT_MSG)
+            }
             results_textview_total.text = total.formatsCurrencyForBrazilian()
             this.total = total.toDouble()
+
         })
 
         viewModel.getTotalMoney().observe(viewLifecycleOwner, Observer {
             results_textview_money.text = it.formatsCurrencyForBrazilian()
-            updateProgressByType(it.toDouble(), "money")
+            updateProgressByType(it.toDouble(), MONEY)
         })
 
         viewModel.getTotalCredidCard().observe(viewLifecycleOwner, Observer {
             results_textview_credid_card.text = it.formatsCurrencyForBrazilian()
-            updateProgressByType(it.toDouble(), "creditCard")
+            updateProgressByType(it.toDouble(), CREDITCARD)
         })
 
         viewModel.getTotalInstallment().observe(viewLifecycleOwner, Observer {
             results_textview_installment.text = it.formatsCurrencyForBrazilian()
-            updateProgressByType(it.toDouble(), "installment")
+            updateProgressByType(it.toDouble(), INSTALLMENT)
         })
 
         viewModel.getTotalFernando().observe(viewLifecycleOwner, Observer {
@@ -71,29 +115,35 @@ class ResultFragment : Fragment() {
         viewModel.getTotalJunior().observe(viewLifecycleOwner, Observer {
             results_junior.text = it.formatsCurrencyForBrazilian()
         })
+
+        results_chage_data.text = calendar.formatsDateForBrazilian()
     }
 
     private fun updateProgressByType(value: Double, type : String) {
         total?.let {
             when(type){
-                "money" -> {
+                MONEY -> {
                     val progress = viewModel.calculeteProgressPieChart(value, it)
-                    background_progressbar_money.progress = progress
+                    dataVals.removeAt(0)
+                    dataVals.add(0, PieEntry(progress.toFloat(), R.string.money))
+                    setupPieChart()
                 }
-                "installment" -> {
+                INSTALLMENT -> {
                     val progress = viewModel.calculeteProgressPieChart(value, it)
-                    background_progressbar_installment.progress = progress
+                    dataVals.removeAt(1)
+                    dataVals.add(1, PieEntry(progress.toFloat(), R.string.installment_sale))
+                    setupPieChart()
                 }
-                "creditCard" -> {
+                CREDITCARD -> {
                     val progress = viewModel.calculeteProgressPieChart(value, it)
-                    background_progressbar_credid_card.progress = progress
+                    dataVals.removeAt(2)
+                    dataVals.add(2, PieEntry(progress.toFloat(), R.string.credit))
+                    setupPieChart()
                 }
             }
 
         }
     }
-
-
 
     private fun showNoticeDialog() {
         val inputDatePickerDialog = InputDatePickerDialog(activity!!)

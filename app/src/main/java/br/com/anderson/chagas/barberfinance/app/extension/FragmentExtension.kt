@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import br.com.anderson.chagas.barberfinance.R
 import com.google.android.material.snackbar.Snackbar
 
-fun Fragment.showError(msg: String){
+fun Fragment.showMsg(msg: String){
     Snackbar.make(
         activity!!.findViewById(android.R.id.content),
         msg,
