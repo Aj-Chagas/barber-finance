@@ -1,68 +1,75 @@
 package br.com.anderson.chagas.barberfinance.view.result
 
 import androidx.lifecycle.*
-import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
+import br.com.anderson.chagas.barberfinance.model.PieChartBrain
 import br.com.anderson.chagas.barberfinance.model.SaleBrain
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
-import java.util.*
+import kotlinx.android.synthetic.main.fragment_result.*
+import java.math.BigDecimal
 
 class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
 
-    private val total = MediatorLiveData<String>()
-    private val totalMoney = MediatorLiveData<String>()
-    private val totalInstallment = MediatorLiveData<String>()
-    private val totalCredidCard = MediatorLiveData<String>()
-    private val totalFernando = MediatorLiveData<String>()
-    private val totalJunior = MediatorLiveData<String>()
+    private val total = MediatorLiveData<BigDecimal>()
+    private val totalMoney = MediatorLiveData<BigDecimal>()
+    private val totalInstallment = MediatorLiveData<BigDecimal>()
+    private val totalCredidCard = MediatorLiveData<BigDecimal>()
+    private val totalFernando = MediatorLiveData<BigDecimal>()
+    private val totalJunior = MediatorLiveData<BigDecimal>()
 
     private val creationDate = MutableLiveData<String>()
 
-    fun setCreationDate(date: Date) {
-        creationDate.value = date.formatsDateForBrazilian()
+    fun setCreationDate(calendar: String) {
+        creationDate.value = calendar
     }
 
-    fun getTotal() : LiveData<String> {
-        total.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+    private val listSaleLiveData = Transformations.switchMap(creationDate) {
+        saleRepository.getSaleByDate(it)
+    }
+
+    fun getTotal() : LiveData<BigDecimal> {
+        total.addSource(listSaleLiveData) { sales ->
             total.postValue(SaleBrain.getTotal(sales))
         }
         return total
     }
 
-    fun getTotalMoney() : LiveData<String> {
-        totalMoney.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+    fun getTotalMoney() : LiveData<BigDecimal> {
+        totalMoney.addSource(listSaleLiveData) { sales ->
             totalMoney.postValue(SaleBrain.getTotalMoney(sales))
         }
         return totalMoney
     }
 
-    fun getTotalInstallment() : LiveData<String> {
-        totalInstallment.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+    fun getTotalInstallment() : LiveData<BigDecimal> {
+        totalInstallment.addSource(listSaleLiveData) { sales ->
             totalInstallment.postValue(SaleBrain.getTotalInstallment(sales))
         }
         return totalInstallment
     }
 
-    fun getTotalCredidCard() : LiveData<String> {
-        totalCredidCard.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+    fun getTotalCredidCard() : LiveData<BigDecimal> {
+        totalCredidCard.addSource(listSaleLiveData) { sales ->
             totalCredidCard.postValue(SaleBrain.getTotalCredidCard(sales))
         }
         return totalCredidCard
     }
 
-    fun getTotalFernando() : LiveData<String> {
-        totalFernando.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+    fun getTotalFernando() : LiveData<BigDecimal> {
+        totalFernando.addSource(listSaleLiveData) { sales ->
             totalFernando.postValue(SaleBrain.getTotalFernando(sales))
         }
         return totalFernando
     }
 
-    fun getTotalJunior() : LiveData<String> {
-        totalJunior.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+    fun getTotalJunior() : LiveData<BigDecimal> {
+        totalJunior.addSource(listSaleLiveData) { sales ->
             totalJunior.postValue(SaleBrain.getTotalJunior(sales))
         }
         return totalJunior
     }
 
-
+    fun calculeteProgressPieChart(value: Double, total: Double): Int {
+        return PieChartBrain.calculateProgressPieChart(value, total)
+    }
 
 }

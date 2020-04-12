@@ -24,12 +24,11 @@ class SaleBrain {
             return sale
         }
 
-        fun getTotal(list : List<Sale>?) : String {
+        fun getTotal(list : List<Sale>?) : BigDecimal {
             if( list?.size!! > 0){
-                val total = list?.map { it.salePrice }?.reduce(getTotalize())
-                return total?.formatsCurrencyForBrazilian() ?: "R$ 0,00"
+                return list?.map { it.salePrice }?.reduce(getTotalize())
             }
-            return "R$ 0,00"
+            return BigDecimal(0.0)
         }
 
         fun getTotalMoney(sales: List<Sale>?) = getTotalBy(sales, "Dinheiro")
@@ -44,13 +43,12 @@ class SaleBrain {
 
         private fun getTotalize() = { total: BigDecimal, atual: BigDecimal -> total + atual}
 
-        fun getTotalBy(sales: List<Sale>?, s:String) : String{
+        fun getTotalBy(sales: List<Sale>?, s:String) : BigDecimal {
             val filter = sales?.filter { it.barberName == s || it.paymentMethod == s }
             if (filter?.size!! > 0){
-                val total = filter?.map { it.salePrice }?.reduce(getTotalize())
-                return total?.formatsCurrencyForBrazilian() ?: "R$ 0,00"
+                return filter?.map { it.salePrice }?.reduce(getTotalize())
             }
-            return "R$ 0,00"
+            return BigDecimal(0.0)
         }
     }
 }

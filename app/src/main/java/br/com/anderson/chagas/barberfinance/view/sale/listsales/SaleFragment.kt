@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import br.com.anderson.chagas.barberfinance.R
+import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
 import kotlinx.android.synthetic.main.fragment_sale.*
 import org.koin.android.ext.android.inject
+import java.util.*
 
 
 class SaleFragment : Fragment() {

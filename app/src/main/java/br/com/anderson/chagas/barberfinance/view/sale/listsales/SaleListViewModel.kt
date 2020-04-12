@@ -1,27 +1,34 @@
 package br.com.anderson.chagas.barberfinance.view.sale.listsales
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 import java.util.*
 
-class SaleListViewModel(private val saleRepository: SaleRepository) : ViewModel(){
+class SaleListViewModel(
+    private val saleRepository: SaleRepository
+) : ViewModel(){
 
 
     private val saleList = MediatorLiveData<List<Sale>>()
     private val creationDate = MutableLiveData<String>()
+    private lateinit var listSaleLiveData : LiveData<List<Sale>>
 
     init {
-        setCreationDate(Date())
+        setCreationDate(Calendar.getInstance().formatsDateForBrazilian())
+        initializeLiveData()
         getSaleByDate()
     }
 
-    fun setCreationDate(date: Date) {
-        creationDate.value = date.formatsDateForBrazilian()
+    private fun initializeLiveData() {
+        listSaleLiveData = Transformations.switchMap(creationDate) { date ->
+            saleRepository.getSaleByDate(date)
+        }
+    }
+
+    fun setCreationDate(calendar: String) {
+        creationDate.value = calendar
     }
 
     fun getSaleList(): LiveData<List<Sale>>{
@@ -29,7 +36,7 @@ class SaleListViewModel(private val saleRepository: SaleRepository) : ViewModel(
     }
 
     private fun getSaleByDate(){
-        saleList.addSource(saleRepository.getSaleByDate(creationDate)) { sales ->
+        saleList.addSource(listSaleLiveData) { sales ->
             saleList.postValue(sales)
         }
     }

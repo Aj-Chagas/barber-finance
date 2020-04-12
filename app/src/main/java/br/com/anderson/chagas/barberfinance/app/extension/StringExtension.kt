@@ -4,5 +4,6 @@ fun String.formatsCurrencyForBrazilian() : String{
 
     return this
         .replace("R$", "")
+        .replace(".", "")
         .replace(",", ".").trim()
 }
