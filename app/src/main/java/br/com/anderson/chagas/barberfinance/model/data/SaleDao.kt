@@ -1,10 +1,7 @@
 package br.com.anderson.chagas.barberfinance.model.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import br.com.anderson.chagas.barberfinance.model.Sale
 
 @Dao
@@ -18,5 +15,8 @@ interface SaleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(sale: Sale)
+
+    @Delete
+    suspend fun remove(sale: Sale)
 
 }

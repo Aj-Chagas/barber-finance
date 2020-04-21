@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
 import br.com.anderson.chagas.barberfinance.model.Sale
 import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
+import kotlinx.coroutines.launch
 import java.util.*
 
 class SaleListViewModel(
@@ -38,6 +39,12 @@ class SaleListViewModel(
     private fun getSaleByDate(){
         saleList.addSource(listSaleLiveData) { sales ->
             saleList.postValue(sales)
+        }
+    }
+
+    fun removeSale(sale: Sale) {
+        viewModelScope.launch {
+            saleRepository.deleteSale(sale)
         }
     }
 }

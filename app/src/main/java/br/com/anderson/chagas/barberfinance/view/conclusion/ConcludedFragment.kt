@@ -42,11 +42,4 @@ class ConcludedFragment : Fragment() {
     private fun goToNavigationSales(view: View) {
         view.findNavController().navigate(R.id.action_navigation_concluded_to_navigation_sales)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        setActionbarTitle("", false)
-    }
-
-
 }

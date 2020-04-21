@@ -2,6 +2,7 @@ package br.com.anderson.chagas.barberfinance.view.sale.listsales
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -30,9 +31,20 @@ class SaleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        registerForContextMenu(recycler_list_sales)
         setListener()
         setAdapter()
         getSaleList()
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        println("chama")
+        if(item.groupId == 0){
+            val order = item.order
+            val itemSelected = adapter.getItem(order)
+            viewModel.removeSale(itemSelected)
+        }
+        return super.onContextItemSelected(item)
     }
 
     private fun getSaleList() {
@@ -43,6 +55,7 @@ class SaleFragment : Fragment() {
 
     private fun setAdapter() {
         recycler_list_sales.adapter = adapter
+        //registerForContextMenu(recycler_list_sales)
     }
 
 

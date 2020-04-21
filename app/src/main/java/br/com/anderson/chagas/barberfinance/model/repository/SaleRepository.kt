@@ -14,4 +14,8 @@ class SaleRepository(private val saleDao: SaleDao) {
         return saleDao.getByData(creationDate)
     }
 
+    suspend fun deleteSale(sale: Sale){
+        saleDao.remove(sale)
+    }
+
 }

@@ -1,5 +1,6 @@
 package br.com.anderson.chagas.barberfinance.view.sale.listsales
 
+import android.view.ContextMenu
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,13 +36,27 @@ class SaleListAdapter(private val sales: MutableList<Sale> = mutableListOf(),
         notifyItemRangeInserted(0, this.sales.size)
     }
 
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    fun getItem(position: Int): Sale {
+        return sales[position]
+    }
+
+    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener{
 
         fun bindView(sale: Sale) {
             itemView.item_sale_name.text = sale.barberName
             itemView.item_sale_creation_time.text = sale.creationTime
             itemView.item_sale_price.text = sale.salePrice.formatsCurrencyForBrazilian()
             itemView.item_sale_payment_method.text = sale.paymentMethod
+            itemView.setOnCreateContextMenuListener(this)
+        }
+
+        override fun onCreateContextMenu(
+            menu: ContextMenu?,
+            v: View?,
+            menuInfo: ContextMenu.ContextMenuInfo?
+        ) {
+            menu?.add(0, v!!.id, adapterPosition, "Remover")
+            println("chama")
         }
     }
 }
