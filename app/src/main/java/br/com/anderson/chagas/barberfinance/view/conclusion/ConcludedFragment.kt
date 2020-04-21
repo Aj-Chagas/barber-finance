@@ -31,6 +31,7 @@ class ConcludedFragment : Fragment() {
 
     private fun setAnimation(view: View) {
         val animationView = progressBar as LottieAnimationView
+        animationView.speed = 1.90f
         animationView.addAnimatorListener(object : AnimatorListenerAdapter() {
             override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)

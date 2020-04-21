@@ -19,6 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/sale_textview_msg"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="Olá Fernando, hoje não foi registrado nenhuma venda, para começar clique no botão adicionar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recycler_list_sales"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_sale"

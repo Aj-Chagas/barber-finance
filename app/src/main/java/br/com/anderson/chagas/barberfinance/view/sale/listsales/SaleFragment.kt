@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import br.com.anderson.chagas.barberfinance.R
+import kotlinx.android.synthetic.main.fragment_result.*
 import kotlinx.android.synthetic.main.fragment_sale.*
 import org.koin.android.ext.android.inject
 
@@ -38,7 +39,6 @@ class SaleFragment : Fragment() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        println("chama")
         if(item.groupId == 0){
             val order = item.order
             val itemSelected = adapter.getItem(order)
@@ -49,13 +49,17 @@ class SaleFragment : Fragment() {
 
     private fun getSaleList() {
         viewModel.getSaleList().observe(viewLifecycleOwner, Observer { sales ->
+            if(sales.isEmpty()){
+                sale_textview_msg.visibility = View.VISIBLE
+            } else{
+                sale_textview_msg.visibility = View.GONE
+            }
             adapter.update(sales)
         })
     }
 
     private fun setAdapter() {
         recycler_list_sales.adapter = adapter
-        //registerForContextMenu(recycler_list_sales)
     }
 
 

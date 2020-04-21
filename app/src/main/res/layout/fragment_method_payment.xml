@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
-                android:text="@string/credi_card"
+                android:text="@string/credit"
                 android:textColor="@color/black"
                 android:textSize="@dimen/default_25sp"
                 app:layout_constraintBottom_toBottomOf="parent"

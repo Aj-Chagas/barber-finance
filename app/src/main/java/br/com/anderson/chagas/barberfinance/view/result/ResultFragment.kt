@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
 import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
-import br.com.anderson.chagas.barberfinance.app.extension.showMsg
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -41,6 +40,9 @@ class ResultFragment : Fragment() {
         private const val CREDITCARD = "creditCard"
         private const val INSTALLMENT = "installment"
         private const val ALERT_MSG = "Não houve vendas nessa data "
+        private const val DINHEIRO = "Dinheiro"
+        private const val FIADO = "Fiado"
+        private const val CREDITO = "Crédito"
         private const val ZEROED_VALUE = ""
     }
 
@@ -73,7 +75,7 @@ class ResultFragment : Fragment() {
         pieData.setValueTextSize(12f)
         pieData.setValueTextColor(Color.WHITE)
         pieChart.data = pieData
-        pieChart.centerText = total?.toBigDecimal()?.formatsCurrencyForBrazilian() ?: ZEROED_VALUE
+        pieChart.centerText = total?.toBigDecimal()?.formatsCurrencyForBrazilian()
         pieChart.setCenterTextSize(20f)
         pieChart.setEntryLabelTextSize(0f)
         pieChart.setEntryLabelColor(Color.WHITE)
@@ -90,10 +92,9 @@ class ResultFragment : Fragment() {
                 results_textview_msg.text = ALERT_MSG
                 results_textview_msg.visibility = View.VISIBLE
             } else{
-                this.total = total.toDouble()
                 results_textview_msg.visibility = View.GONE
             }
-
+            this.total = total.toDouble()
         })
 
         viewModel.getTotalMoney().observe(viewLifecycleOwner, Observer {
@@ -128,19 +129,19 @@ class ResultFragment : Fragment() {
                 MONEY -> {
                     val progress = viewModel.calculeteProgressPieChart(value, it)
                     dataVals.removeAt(0)
-                    dataVals.add(0, PieEntry(progress.toFloat(), "Dinheiro"))
+                    dataVals.add(0, PieEntry(progress.toFloat(), DINHEIRO))
                     setupPieChart()
                 }
                 INSTALLMENT -> {
                     val progress = viewModel.calculeteProgressPieChart(value, it)
                     dataVals.removeAt(1)
-                    dataVals.add(1, PieEntry(progress.toFloat(), "Fiado"))
+                    dataVals.add(1, PieEntry(progress.toFloat(), FIADO))
                     setupPieChart()
                 }
                 CREDITCARD -> {
                     val progress = viewModel.calculeteProgressPieChart(value, it)
                     dataVals.removeAt(2)
-                    dataVals.add(2, PieEntry(progress.toFloat(), "Crédito"))
+                    dataVals.add(2, PieEntry(progress.toFloat(), CREDITO))
                     setupPieChart()
                 }
             }
