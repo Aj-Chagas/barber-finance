@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.CustomActivityTheme)
         setContentView(R.layout.activity_main)
         statusBarWhiteWithBackIcons()
         setupNavigation()
