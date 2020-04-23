@@ -60,4 +60,14 @@
             app:destination="@id/navigation_sales" />
     </fragment>
 
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="br.com.anderson.chagas.barberfinance.view.SplashScreen"
+        android:label="SplashScreen"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashScreen_to_navigation_sales"
+            app:destination="@id/navigation_sales" />
+    </fragment>
+
 </navigation>
