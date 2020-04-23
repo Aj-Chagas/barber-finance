@@ -19,4 +19,6 @@ interface SaleDao {
     @Delete
     suspend fun remove(sale: Sale)
 
+    @Query("SELECT * FROM Sale WHERE creationDate BETWEEN :dateStart and :dateFinal ORDER BY id DESC")
+    fun getByDate(dateStart : String, dateFinal : String) :LiveData<List<Sale>>
 }

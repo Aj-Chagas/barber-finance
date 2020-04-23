@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import br.com.anderson.chagas.barberfinance.R
 import br.com.anderson.chagas.barberfinance.app.extension.formatsCurrencyForBrazilian
 import br.com.anderson.chagas.barberfinance.app.extension.formatsDateForBrazilian
+import br.com.anderson.chagas.barberfinance.app.extension.showMsg
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -161,9 +162,26 @@ class ResultFragment : Fragment() {
         dialog.dismiss()
     }
 
+    /**
+     * o Set deve ser feito primeiro no dateFinal e depois no startDate, por conta do transformation
+     * switch que observa qualquer mudanca na data de inicio
+     *
+     */
+
     private fun inputDatePickerDialogPositiveAction(inflatedView: View) {
-        val text = inflatedView.dialog_date_edittext_date.text
-        viewModel.setCreationDate(text.toString())
+        val dateStart = inflatedView.dialog_date_edittext_date_start.text
+        val dateFinal = inflatedView.dialog_date_edittext_date_final.text
+
+        if(dateStart.isNotEmpty() || dateFinal.isNotEmpty()){
+            viewModel.setFinalDate(dateFinal.toString())
+            viewModel.setStartDate(dateStart.toString())
+
+            results_chage_data.text = "${dateStart} - ${dateFinal} "
+
+        } else{
+            showMsg("Data inválida. Preencha todos os campos")
+        }
+
     }
 
 }

@@ -14,6 +14,10 @@ class SaleRepository(private val saleDao: SaleDao) {
         return saleDao.getByData(creationDate)
     }
 
+    fun getSaleByDatee(dateStart: String, dateFinal: String): LiveData<List<Sale>> {
+        return saleDao.getByDate(dateStart, dateFinal)
+    }
+
     suspend fun deleteSale(sale: Sale){
         saleDao.remove(sale)
     }

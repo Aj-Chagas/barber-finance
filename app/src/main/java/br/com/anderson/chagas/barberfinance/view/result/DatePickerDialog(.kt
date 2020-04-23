@@ -11,7 +11,8 @@ import java.util.*
 
 class DatePickerFragment(
     private val context: Context,
-    private val inflatedView: View?) :  DatePickerDialog.OnDateSetListener {
+    private val inflatedView: View?,
+    var dateSelected: (date : Calendar) -> Unit = {}) :  DatePickerDialog.OnDateSetListener {
 
     private val c: Calendar = Calendar.getInstance()
 
@@ -28,9 +29,14 @@ class DatePickerFragment(
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
 
         c.set(year, month, day)
+        dateSelected(c)
+
         val formatsDateForBrazilian = c.formatsDateForBrazilian()
         val formatDateddMMMMyyyy = c.formatDateddMMMMyyyy()
-        inflatedView?.dialog_date_edittext_date?.setText(formatsDateForBrazilian)
-        inflatedView?.dialog_date_textview_date?.text = formatDateddMMMMyyyy
+/*        inflatedView?.dialog_date_edittext_date_start?.setText(formatsDateForBrazilian)
+        inflatedView?.dialog_date_edittext_date_final?.setText(formatsDateForBrazilian)
+        inflatedView?.dialog_date_textview_date?.text = formatDateddMMMMyyyy*/
+
+
     }
 }

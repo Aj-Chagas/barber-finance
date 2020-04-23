@@ -16,19 +16,28 @@ class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
     private val totalCredidCard = MediatorLiveData<BigDecimal>()
     private val totalFernando = MediatorLiveData<BigDecimal>()
     private val totalJunior = MediatorLiveData<BigDecimal>()
-    private val creationDate = MutableLiveData<String>()
+
+    private val startDate = MutableLiveData<String>()
+    private val finalDate = MutableLiveData<String>()
 
     init {
-        setCreationDate(Calendar.getInstance().formatsDateForBrazilian())
+        setStartDate(Calendar.getInstance().formatsDateForBrazilian())
+        setFinalDate(Calendar.getInstance().formatsDateForBrazilian())
     }
 
-    fun setCreationDate(calendar: String) {
-        creationDate.value = calendar
+    fun setStartDate(calendar: String) {
+        startDate.value = calendar
     }
 
-    private val listSaleLiveData = Transformations.switchMap(creationDate) {
-        saleRepository.getSaleByDate(it)
+    fun setFinalDate(calendar: String){
+        finalDate.value = calendar
     }
+    
+
+    private val listSaleLiveData = Transformations.switchMap(startDate)  {
+        saleRepository.getSaleByDatee(it, finalDate.value.toString())
+    }
+
 
     fun getTotal() : LiveData<BigDecimal> {
         total.addSource(listSaleLiveData) { sales ->
