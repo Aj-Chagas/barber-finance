@@ -76,19 +76,18 @@
         app:layout_constraintTop_toBottomOf="@+id/group_chip"
         app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/button_concludes"
-            android:layout_width="@dimen/default_0dp"
-            android:layout_height="48dp"
-            android:text="@string/conclude"
-            android:fontFamily="@font/roboto"
-            android:textColor="@android:color/white"
-            android:layout_margin="@dimen/default_16dp"
-            android:background="@drawable/rounded_red_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
+    <Button
+        android:id="@+id/button_concludes"
+        android:layout_width="@dimen/default_0dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/default_16dp"
+        android:background="@drawable/rounded_red_button"
+        android:fontFamily="@font/roboto"
+        android:text="@string/conclude"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

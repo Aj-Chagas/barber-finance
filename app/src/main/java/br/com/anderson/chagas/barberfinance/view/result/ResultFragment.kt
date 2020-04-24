@@ -33,7 +33,11 @@ class ResultFragment : Fragment() {
     //Color.rgb(246,169,94) amarelo
     //Color.rgb(0,153,155) verde
 
-    private val colorArray: MutableList<Int> = mutableListOf(Color.rgb(97,84,174), Color.rgb(0,153,155), Color.rgb(246,75,80))
+    private val colorArray: MutableList<Int> = mutableListOf(
+        Color.rgb(97,84,174),
+        Color.rgb(0,153,155),
+        Color.rgb(246,75,80))
+
     private var dataVals = ArrayList<PieEntry>(listOf(PieEntry(0f, ""), PieEntry(0f, ""), PieEntry(0f, "")))
 
     companion object {
@@ -44,7 +48,8 @@ class ResultFragment : Fragment() {
         private const val DINHEIRO = "Dinheiro"
         private const val FIADO = "Fiado"
         private const val CREDITO = "Crédito"
-        private const val ZEROED_VALUE = ""
+        private const val FILL_INITIAL_AND_FINAL_DATA = "A data final deve ser menor que a data de inicio"
+        private const val THE_END_DATE_MUST_BE_LESS_THAN_THE_START_DATE = "A data final deve ser menor que a data de inicio"
     }
 
     override fun onCreateView(
@@ -162,24 +167,20 @@ class ResultFragment : Fragment() {
         dialog.dismiss()
     }
 
-    /**
-     * o Set deve ser feito primeiro no dateFinal e depois no startDate, por conta do transformation
-     * switch que observa qualquer mudanca na data de inicio
-     *
-     */
-
     private fun inputDatePickerDialogPositiveAction(inflatedView: View) {
-        val dateStart = inflatedView.dialog_date_edittext_date_start.text
-        val dateFinal = inflatedView.dialog_date_edittext_date_final.text
+        val dateStart = inflatedView.dialog_date_edittext_start_date.text.toString()
+        val dateFinal = inflatedView.dialog_date_edittext_final_date.text.toString()
 
-        if(dateStart.isNotEmpty() || dateFinal.isNotEmpty()){
-            viewModel.setFinalDate(dateFinal.toString())
-            viewModel.setStartDate(dateStart.toString())
+        viewModel.setStartDate(dateStart)
+        viewModel.setFinalDate(dateFinal)
 
-            results_chage_data.text = "${dateStart} - ${dateFinal} "
-
-        } else{
-            showMsg("Data inválida. Preencha todos os campos")
+        if (!viewModel.validDateFieldsIsNotEmpty()){
+            showMsg(FILL_INITIAL_AND_FINAL_DATA, placeSnackBar)
+        } else if (!viewModel.isValidDate()) {
+            showMsg(THE_END_DATE_MUST_BE_LESS_THAN_THE_START_DATE, placeSnackBar)
+        } else {
+            results_chage_data.text = "$dateStart - $dateFinal"
+            viewModel.setUpdateDataSource()
         }
 
     }

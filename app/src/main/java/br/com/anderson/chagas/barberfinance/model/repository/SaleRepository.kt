@@ -10,11 +10,11 @@ class SaleRepository(private val saleDao: SaleDao) {
         saleDao.insert(sale)
     }
 
-    fun getSaleByDate(creationDate: String): LiveData<List<Sale>> {
+    fun fetchListSalesByDate(creationDate: String): LiveData<List<Sale>> {
         return saleDao.getByData(creationDate)
     }
 
-    fun getSaleByDatee(dateStart: String, dateFinal: String): LiveData<List<Sale>> {
+    fun fetchListByDateRange(dateStart: String, dateFinal: String): LiveData<List<Sale>> {
         return saleDao.getByDate(dateStart, dateFinal)
     }
 

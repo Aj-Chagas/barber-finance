@@ -11,7 +11,6 @@ class SaleListViewModel(
     private val saleRepository: SaleRepository
 ) : ViewModel(){
 
-
     private val saleList = MediatorLiveData<List<Sale>>()
     private val creationDate = MutableLiveData<String>()
     private lateinit var listSaleLiveData : LiveData<List<Sale>>
@@ -24,7 +23,7 @@ class SaleListViewModel(
 
     private fun initializeLiveData() {
         listSaleLiveData = Transformations.switchMap(creationDate) { date ->
-            saleRepository.getSaleByDate(date)
+            saleRepository.fetchListSalesByDate(date)
         }
     }
 

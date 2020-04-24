@@ -81,9 +81,9 @@ class ServiceCost : Fragment() {
     private fun setListenerButtonConcludes() {
         button_concludes.setOnClickListener {
             if(!viewModel.checkChipIsSelected()){
-                showMsg(SELECT_THE_BARBER)
+                showMsg(SELECT_THE_BARBER, activity!!.findViewById(android.R.id.content))
             } else if(!viewModel.checkValueMoneyIsNotEmpty(value_money.text.toString())){
-                showMsg(ENTER_THE_VALUE_OF_SALE)
+                showMsg(ENTER_THE_VALUE_OF_SALE, activity!!.findViewById(android.R.id.content))
             }else {
                 viewModel.saveSale(paymentMethod)
                 goToConcludedFragment()

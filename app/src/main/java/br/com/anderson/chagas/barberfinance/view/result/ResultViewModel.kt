@@ -8,36 +8,47 @@ import br.com.anderson.chagas.barberfinance.model.repository.SaleRepository
 import java.math.BigDecimal
 import java.util.*
 
+
 class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
 
     private val total = MediatorLiveData<BigDecimal>()
     private val totalMoney = MediatorLiveData<BigDecimal>()
     private val totalInstallment = MediatorLiveData<BigDecimal>()
-    private val totalCredidCard = MediatorLiveData<BigDecimal>()
+    private val totalCreditCard = MediatorLiveData<BigDecimal>()
     private val totalFernando = MediatorLiveData<BigDecimal>()
     private val totalJunior = MediatorLiveData<BigDecimal>()
 
-    private val startDate = MutableLiveData<String>()
-    private val finalDate = MutableLiveData<String>()
+    private lateinit var startDate : String
+    private lateinit var finalDate : String
+
+    private val updateDataSource = MutableLiveData<Int>()
 
     init {
         setStartDate(Calendar.getInstance().formatsDateForBrazilian())
         setFinalDate(Calendar.getInstance().formatsDateForBrazilian())
+        updateDataSource.value = 1
     }
 
     fun setStartDate(calendar: String) {
-        startDate.value = calendar
+        startDate = calendar
+    }
+
+    /**
+     * toda vez que o método updateDatSource for executado, será feita uma busca no banco de dados
+     * de acordo com a nova data escolhidda
+     * */
+
+    fun setUpdateDataSource (){
+        updateDataSource.value = 2
     }
 
     fun setFinalDate(calendar: String){
-        finalDate.value = calendar
-    }
-    
-
-    private val listSaleLiveData = Transformations.switchMap(startDate)  {
-        saleRepository.getSaleByDatee(it, finalDate.value.toString())
+        finalDate = calendar
     }
 
+    private val listSaleLiveData = Transformations.switchMap(updateDataSource)  {
+        saleRepository.fetchListByDateRange(startDate, finalDate)
+    }
 
     fun getTotal() : LiveData<BigDecimal> {
         total.addSource(listSaleLiveData) { sales ->
@@ -61,10 +72,10 @@ class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
     }
 
     fun getTotalCredidCard() : LiveData<BigDecimal> {
-        totalCredidCard.addSource(listSaleLiveData) { sales ->
-            totalCredidCard.postValue(SaleBrain.getTotalCredidCard(sales))
+        totalCreditCard.addSource(listSaleLiveData) { sales ->
+            totalCreditCard.postValue(SaleBrain.getTotalCredidCard(sales))
         }
-        return totalCredidCard
+        return totalCreditCard
     }
 
     fun getTotalFernando() : LiveData<BigDecimal> {
@@ -84,5 +95,20 @@ class ResultViewModel(private val saleRepository: SaleRepository) : ViewModel(){
     fun calculeteProgressPieChart(value: Double, total: Double): Int {
         return PieChartBrain.calculateProgressPieChart(value, total)
     }
+
+
+    fun isValidDate() : Boolean {
+        return startDate <= finalDate
+    }
+
+    fun validDateFieldsIsNotEmpty(
+    ): Boolean {
+        if (startDate.isNotEmpty() && finalDate.isNotEmpty()) {
+            return true
+        }
+        return false
+    }
+
+
 
 }

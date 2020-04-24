@@ -50,37 +50,33 @@ class InputDatePickerDialog(private val context: Context) {
 
     private fun onCreateDialog(){
         initializeInputs()
-
         configureListener()
-
     }
 
 
     private fun initializeInputs() {
-        val formatsDateForBrazilian = c.formatsDateForBrazilian()
         val formatDateddMMMMyyyy = c.formatDateddMMMMyyyy()
-        //inflatedView.dialog_date_edittext_date_start?.setText(formatsDateForBrazilian)
         inflatedView.dialog_date_textview_date?.text = formatDateddMMMMyyyy
     }
 
     private fun configureListener() {
-        inflatedView.dialog_date_edittext_date_start.setOnClickListener {
+        inflatedView.dialog_date_edittext_start_date.setOnClickListener {
             datePickerFragment.showDataPicker().show()
             datePickerFragment.dateSelected = this::bindDateStart
         }
 
-        inflatedView?.dialog_date_edittext_date_final.setOnClickListener {
+        inflatedView?.dialog_date_edittext_final_date.setOnClickListener {
             datePickerFragment.showDataPicker().show()
             datePickerFragment.dateSelected = this::bindDateFinal
         }
     }
 
     private fun bindDateStart(date : Calendar) {
-        inflatedView?.dialog_date_edittext_date_start?.setText(date.formatsDateForBrazilian())
+        inflatedView?.dialog_date_edittext_start_date?.setText(date.formatsDateForBrazilian())
     }
 
     private fun bindDateFinal(date : Calendar) {
-        inflatedView?.dialog_date_edittext_date_final?.setText(date.formatsDateForBrazilian())
+        inflatedView?.dialog_date_edittext_final_date?.setText(date.formatsDateForBrazilian())
     }
 
 }
